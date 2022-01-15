@@ -85,9 +85,9 @@ class TitleController extends Controller
     {
         $result = new TitleModel();
 
-        $titlelist = $result->studenttitle();
+        $avalabletitle = $result->studenttitle();
 
-       return view('title.indextitle',compact(['titlelist']));
+       return view('title.titlestudent',compact(['avalabletitle']));
     }
 
 }

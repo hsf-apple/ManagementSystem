@@ -2,7 +2,7 @@
 
 @section('content')
 <link rel="stylesheet" href="/css/counting.css">
-@include('layouts.adminsidebar')
+@include('layouts.sidebar')
  <main class="py-4">  {{--create spacing --}}
     <div class="content">
         <div class="row justify-content-center">
@@ -17,10 +17,6 @@
                         @endif
                         {{-- {{Auth::user()->userID}} --}}
 
-                        <div class="d-flex justify-content-between">
-                            <button type="button" onclick="window.location='{{route('title.create')}}'" class="btn btn-primary">Add title</button>
-                        </div>
-
 
                         <br><br>
                         <table class="table" id="tableId">
@@ -31,7 +27,7 @@
                                 <th colspan="2" style="text-align: center; ">Action</th>
 
                             </tr>
-                            {{-- @foreach ($titlelist as $titlelist1)
+                            @foreach ($avalabletitle as $titlelist1)
                             <tr>
                                 <td>letak no</td>
                                 <td>{{$titlelist1->field}}</td>
@@ -40,14 +36,17 @@
                                     <button type="button" onclick="window.location='{{route('title.edit',$titlelist1->id)}}'" class="btn btn-primary">Edit</button>
 
                                     <br><br>
+                                    @endforeach
                                 {{-- </td>
                                 <td> --}}
-                                    <form action="{{ route('title.destroy',$titlelist1->id) }}" onsubmit="return confirm('Are you sure you want to cancel this request?');" method="post">
+                                    {{-- <form action="{{ route('title.destroy',$titlelist1->id) }}" onsubmit="return confirm('Are you sure you want to cancel this request?');" method="post">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
 
                                     <input type="submit" value="Delete" class="btn btn-danger">
                                     </form>
+
+
                             </td>
                             </tr>
 
