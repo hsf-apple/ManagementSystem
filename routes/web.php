@@ -55,4 +55,4 @@ Route::resource('/proposal', ProposalController::class);
 
 //title
 Route::resource('/title', TitleController::class);
-Route::get('/listtitlestudent', [TitleController::class, 'listtitlestudent'])->name('listApprovetLecture');
+Route::get('/listtitlestudent', [TitleController::class, 'listtitlestudent'])->name('listtitle');
