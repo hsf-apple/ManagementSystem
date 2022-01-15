@@ -31,6 +31,6 @@ class LogbookModel extends Model
 
     public function fkStudent()
     {
-        return $this->belongsTo('App\Models\lectureprofileModel','lectureId','lectureId');
+        return $this->belongsTo('App\Models\lectureprofileModel','studentId','studentId');
     }
 }
