@@ -42,9 +42,9 @@ class TitleModel extends Model
        public function studenttitle()
        {
 
-        $inventoryItem = TitleModel::Select()->where('studentId','like','')->get();
+        $studenttitle = TitleModel::Select()->where('studentId','like','')->get();
 
-        return $inventoryItem;
+        return $studenttitle;
        }
 
 
