@@ -41,4 +41,21 @@ class lectureprofileModel extends Model
         return $this->hasMany('App\Models\LogbookModel','lectureId','lectureId' );
     }
 
+     //index
+     public function changetitle()
+     {
+             $getsession = session()->get('userprimarykey');
+
+             $user = new lectureprofileModel();
+
+             $user = $user::where('user_id',$getsession)->first();
+
+             $inventorylist = lectureprofileModel::Select()->where('lectureId','==',$user->lectureId)->get();
+
+             return $inventorylist;
+     }
+
+
+
+
 }

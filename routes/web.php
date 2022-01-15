@@ -3,6 +3,7 @@
 use App\Http\Controllers\inventoryusageController;
 use App\Http\Controllers\TitleController;
 use App\Http\Controllers\ExpertiseController;
+use App\Http\Controllers\LectureController;
 use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\StudentController;
@@ -67,4 +68,7 @@ Route::put('/Book/{id}', [TitleController::class, 'Book'])->name('Book');
 
 //Logbook
 Route::resource('/logbook', LogbookController::class);
+
+//lecture
+Route::resource('/LectureProfile', LectureController::class);
 

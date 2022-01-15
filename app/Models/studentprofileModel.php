@@ -39,7 +39,7 @@ class studentprofileModel extends Model
     }
 
 
-    public function updateStudent($data, $id)
+    public function updateStudent($data, $id)//inventory item
     {
         $postupdate = studentprofileModel::whereid($id)->first();
 
