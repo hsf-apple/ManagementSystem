@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="/css/counting.css">
+
 @include('layouts.sidebar')
  <main class="py-4">  {{--create spacing --}}
     <div class="content">
