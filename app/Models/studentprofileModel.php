@@ -33,11 +33,7 @@ class studentprofileModel extends Model
         return $this->hasMany('App\Models\TitleModel','studentId','studentId');
     }
 
-<<<<<<< HEAD
 
-
-
-=======
     public function updateStudent($data, $id)
     {
         $postupdate = studentprofileModel::whereid($id)->first();
@@ -91,5 +87,5 @@ class studentprofileModel extends Model
         }
 
     }
->>>>>>> 8d843ff6624965f667a0604407331aa2dca2e77b
+
 }
