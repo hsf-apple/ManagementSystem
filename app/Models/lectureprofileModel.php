@@ -36,4 +36,9 @@ class lectureprofileModel extends Model
         return $this->hasMany('App\Models\TitleModel','lectureId','lectureId');
     }
 
+    public function logbook()
+    {
+        return $this->hasMany('App\Models\LogbookModel','lectureId','lectureId' );
+    }
+
 }
