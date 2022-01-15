@@ -16,7 +16,10 @@ class StudentController extends Controller
      */
     public function edit(studentprofileModel $studentprofileModel)
     {
-       // view($student)
+
+
+        //view('student');
+
     }
 
     /**

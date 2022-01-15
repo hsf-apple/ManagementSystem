@@ -23,6 +23,11 @@ class studentprofileModel extends Model
     protected $guard = ['user_id'];
     public $timestamps = false;
 
+    public function fkUser()
+    {
+        return $this->belongsTo('App\Models\User','user_id', 'id');
+    }
+
     public function inventoryusage()
     {
         return $this->hasMany('App\Models\inventoryUsage','studentId','studentId' );
