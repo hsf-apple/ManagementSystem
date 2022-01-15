@@ -35,7 +35,7 @@
                                 <td>{{$titlelist1->project_title}}</td>
                                 <td>{{$titlelist1->lectureprofile->lectureName}}</td>
                                 <td>
-                                    <button type="button" onclick="window.location='{{route('title.edit',$titlelist1->id)}}'" class="btn btn-primary">Edit</button>
+                                    <button type="button" onclick="window.location='{{route('title.show',$titlelist1->id)}}'" class="btn btn-info">view</button>
 
                                     <br><br>
 

@@ -36,7 +36,13 @@ class TitleController extends Controller
 
     public function show($id)
     {
-        //
+        $result = new TitleModel();
+
+        $data = $id;
+
+        $showtitlespecifc = $result->viewtitle($data);
+
+       return view('title.showtitlespecific',compact(['showtitlespecifc']));
     }
 
     /**
@@ -98,6 +104,8 @@ class TitleController extends Controller
         $result->Book($data,$dataid);
         return redirect('listtitle');
     }
+
+
 
 
 }

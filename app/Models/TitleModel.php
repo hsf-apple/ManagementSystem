@@ -103,9 +103,13 @@ class TitleModel extends Model
 
        $user->title()->save($postupdate);
 
-
-
      }
 
+     public function viewtitle($data)
+     {
+         $updatetitle = TitleModel::findOrFail($data);
+
+         return $updatetitle;
+     }
 
 }
