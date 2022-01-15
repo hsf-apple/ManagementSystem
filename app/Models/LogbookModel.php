@@ -20,5 +20,17 @@ class LogbookModel extends Model
         'actPlan'
     ];
 
-    
+    protected $guarded = ['studentId', 'lectureId'];
+    public $timestamps = false;
+
+
+    public function fkLecture()
+    {
+        return $this->belongsTo('App\Models\lectureprofileModel','lectureId','lectureId');
+    }
+
+    public function fkStudent()
+    {
+        return $this->belongsTo('App\Models\lectureprofileModel','lectureId','lectureId');
+    }
 }
