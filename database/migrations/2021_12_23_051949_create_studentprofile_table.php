@@ -21,6 +21,9 @@ class CreateStudentprofileTable extends Migration
             $table->string('studentPhone');
             $table->string('student_Skill');
             $table->string('skill_Level');
+
+            //foreign key
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
