@@ -56,3 +56,4 @@ Route::resource('/proposal', ProposalController::class);
 //title
 Route::resource('/title', TitleController::class);
 Route::get('/listtitle', [TitleController::class, 'listtitlestudent'])->name('listtitle');
+Route::put('/Book/{id}', [TitleController::class, 'Book'])->name('Book');

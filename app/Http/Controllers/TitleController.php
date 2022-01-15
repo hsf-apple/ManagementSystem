@@ -90,4 +90,14 @@ class TitleController extends Controller
        return view('title.titlestudent',compact(['avalabletitle']));
     }
 
+    public function Book(Request $request, $id)
+    {
+        $result = new TitleModel();
+        $data = $request;
+        $dataid = $id;
+        $result->Book($data,$dataid);
+        return redirect('listtitle');
+    }
+
+
 }

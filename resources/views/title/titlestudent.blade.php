@@ -24,6 +24,7 @@
                                 <th>No</th>
                                 <th>Field</th>
                                 <th>Title</th>
+                                <th>Lecture Name</th>
                                 <th colspan="2" style="text-align: center; ">Action</th>
 
                             </tr>
@@ -32,25 +33,23 @@
                                 <td>letak no</td>
                                 <td>{{$titlelist1->field}}</td>
                                 <td>{{$titlelist1->project_title}}</td>
+                                <td>{{$titlelist1->lectureprofile->lectureName}}</td>
                                 <td>
                                     <button type="button" onclick="window.location='{{route('title.edit',$titlelist1->id)}}'" class="btn btn-primary">Edit</button>
 
                                     <br><br>
-                                    @endforeach
-                                {{-- </td>
-                                <td> --}}
-                                    {{-- <form action="{{ route('title.destroy',$titlelist1->id) }}" onsubmit="return confirm('Are you sure you want to cancel this request?');" method="post">
+
+                                <td>
+                                    <form action="{{ route('Book',$titlelist1->id) }}" method="post">
                                     @csrf
-                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_method" value="PUT">
 
-                                    <input type="submit" value="Delete" class="btn btn-danger">
+                                    <input type="submit" value="Book" class="btn btn-success" name="Book">
+
                                     </form>
-
-
-                            </td>
-                            </tr>
-
-                            @endforeach --}}
+                                </td>
+                             </tr>
+                             @endforeach
                         </table>
 
                     </div>

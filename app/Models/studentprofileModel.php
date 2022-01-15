@@ -28,9 +28,12 @@ class studentprofileModel extends Model
         return $this->hasMany('App\Models\inventoryUsage','studentId','studentId' );
     }
 
-    public function logbook()
+    public function title()
     {
-        return $this->hasMany('App\Models\LogbookModel','studentId','studentId' );
+        return $this->hasMany('App\Models\TitleModel','studentId','studentId');
     }
+
+
+
 
 }

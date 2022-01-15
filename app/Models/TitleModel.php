@@ -21,6 +21,10 @@ class TitleModel extends Model
     {
         return $this->belongsTo('App\Models\lectureprofileModel','lectureId','lectureId');
     }
+    public function studentprofile()
+    {
+        return $this->belongsTo('App\Models\studentprofileModel','studentId','studentId');
+    }
 
 
       //index
@@ -42,7 +46,8 @@ class TitleModel extends Model
        public function studenttitle()
        {
 
-        $studenttitle = TitleModel::Select()->where('studentId','like','')->get();
+
+        $studenttitle = TitleModel::Select()->orWhereNull('studentId')->with('lectureprofile')->get();
 
         return $studenttitle;
        }
@@ -86,7 +91,21 @@ class TitleModel extends Model
          $deleterequest->delete();
      }
 
+     public function Book($data, $dataid)
+     {
+        $postupdate = TitleModel::whereid($dataid)->first();
 
+       $getsession = $data->session()->get('userprimarykey');
+
+       $user = new studentprofileModel();
+
+       $user = $user::where('user_id',$getsession)->firstOrFail();
+
+       $user->title()->save($postupdate);
+
+
+
+     }
 
 
 }
