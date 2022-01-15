@@ -20,6 +20,9 @@ class CreateLectureprofileTable extends Migration
             $table->string('lecturePhone');
             $table->string('lecture_Skill');
             $table->string('skill_Level');
+
+            //foreign key
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
