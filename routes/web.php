@@ -5,7 +5,7 @@ use App\Http\Controllers\TitleController;
 use App\Http\Controllers\ExpertiseController;
 use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\ProposalController;
-use App\Models\LogbookModel;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +37,9 @@ Route::get('/studentdashboard', function () {
 
 Auth::routes();
 Route::get('/lecturedashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('lecturedashboards');
+
+//student profile
+Route::resource('/StudentProfile', StudentController::class);
 
 //inventory usage
 Route::resource('/inventory', inventoryusageController::class);

@@ -170,5 +170,5 @@ class LogbookModel extends Model
 
             break;
         }
-
+    }
 }
