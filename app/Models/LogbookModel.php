@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class LogbookModel extends Model
 {
     use HasFactory;
+
+    protected $table = 'studentprofile';
+
+    protected $fillable= [
+        'meetingDate',
+        'startTime',
+        'endTime',
+        'currentProgress',
+        'discDetail',
+        'actPlan'
+    ];
+
+    
 }
