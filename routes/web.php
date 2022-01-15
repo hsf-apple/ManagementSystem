@@ -3,7 +3,9 @@
 use App\Http\Controllers\inventoryusageController;
 use App\Http\Controllers\TitleController;
 use App\Http\Controllers\ExpertiseController;
+use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\ProposalController;
+use App\Models\LogbookModel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,3 +58,6 @@ Route::resource('/proposal', ProposalController::class);
 //title
 Route::resource('/title', TitleController::class);
 Route::get('/listtitle', [TitleController::class, 'listtitlestudent'])->name('listtitle');
+
+//Logbook
+Route::resource('/logbook', LogbookController::class);
