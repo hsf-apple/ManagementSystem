@@ -29,8 +29,6 @@ class LogbookController extends Controller
 
         $checksv = $result->checksv();
 
-        print($checksv);
-
         return view('logbook.generatelogbook',compact(['checksv']));
     }
 
