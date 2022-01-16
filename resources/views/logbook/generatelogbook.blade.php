@@ -35,10 +35,10 @@
                             <input type="date" name="meetingDate" id="meetingDate" class="form-control"><br/>
 
                             <label for="startTime" class="form-label">Start Time:</label>
-                            <input type="time" name="timestamp" id="startTime" class="form-control"><br/>
+                            <input type="time" name="startTime" id="startTime" class="form-control"><br/>
 
                             <label for="endTime" class="form-label">End Time:</label>
-                            <input type="time" name="timestamp" id="endTime" class="form-control"><br/>
+                            <input type="time" name="endTime" id="endTime" class="form-control"><br/>
 
                             <label for="currentProgress" class="form-label">Current progress:</label>
                             <input type="text" name="currentProgress" id="currentProgress" class="form-control"><br/>

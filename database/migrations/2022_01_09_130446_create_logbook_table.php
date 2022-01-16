@@ -18,8 +18,8 @@ class CreateLogbookTable extends Migration
             $table->unsignedBigInteger('studentId')->nullable();
             $table->unsignedBigInteger('lectureId')->nullable();
             $table->date('meetingDate');
-            $table->timestamp('startTime');
-            $table->timestamp('endTime');
+            $table->time('startTime');
+            $table->time('endTime');
             $table->text('currentProgress');
             $table->text('discDetail');
             $table->text('actPlan');

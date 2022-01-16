@@ -74,7 +74,14 @@ class LogbookModel extends Model
 
         $addlogbookdata = $data->all();
 
+        $checksvforFKinsert = new studentprofileModel();
+
+        $checksvforFKinsert = ApprovalModel::where('studentId',$user->user_id)->first();
+
+
         $saveinfunctionstudent = new LogbookModel($addlogbookdata);
+
+        $saveinfunctionstudent->lectureId =  $checksvforFKinsert->fkLecture ;
 
         $user->logbook()->save($saveinfunctionstudent);
     }
