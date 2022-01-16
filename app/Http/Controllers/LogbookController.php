@@ -18,8 +18,8 @@ class LogbookController extends Controller
 
         $listlogbookstudent = $result->listlogbook();
 
-
-       return view('logbook.index',compact(['listlogbookstudent']));
+        print($listlogbookstudent);
+      return view('logbook.index',compact(['listlogbookstudent']));
     }
 
 
@@ -35,7 +35,13 @@ class LogbookController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $result = new LogbookModel();
+
+        $data = $request;
+
+        $result->store($data);
+
+        return redirect('logbook');
     }
 
     /**

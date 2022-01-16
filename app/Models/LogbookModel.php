@@ -37,29 +37,47 @@ class LogbookModel extends Model
      public function listlogbook()
      {
 
-             $getsession = session()->get('userprimarykey');
+        $getsession = session()->get('userprimarykey');
 
-             $user = new studentprofileModel();
+        $user = new studentprofileModel();
 
-             $user = $user::where('user_id',$getsession)->firstOrFail();
+        $user = $user::where('user_id',$getsession)->firstOrFail();
 
-             $titlelist = LogbookModel::Select()->where('studentId',$user->fkStudent)->get();
+        $titlelist = LogbookModel::Select()->where('studentId',$user->user_id)->get();
 
-             return $titlelist;
+        return $titlelist;
      }
 
      public function checksv()
      {
 
-             $getsession = session()->get('userprimarykey');
+        $getsession = session()->get('userprimarykey');
 
-             $user = new studentprofileModel();
+        $user = new studentprofileModel();
 
-             $user = $user::where('user_id',$getsession)->firstOrFail();
+        $user = $user::where('user_id',$getsession)->firstOrFail();
 
-             $checksv1 = ApprovalModel::Select()->where('studentId',$user->user_id)->with('fkLecture')->get();
+        $checksv1 = ApprovalModel::Select()->where('studentId',$user->user_id)->with('fkLecture')->get();
 
-             return $checksv1;
+        return $checksv1;
      }
+
+           //store
+    public function store($data)
+    {
+
+        $getsession = $data->session()->get('userprimarykey');
+
+        $user = new studentprofileModel();
+
+        $user = $user::where('user_id',$getsession)->firstOrFail();
+
+        $addlogbookdata = $data->all();
+
+        $saveinfunctionstudent = new LogbookModel($addlogbookdata);
+
+        $user->logbook()->save($saveinfunctionstudent);
+    }
+
 
 }

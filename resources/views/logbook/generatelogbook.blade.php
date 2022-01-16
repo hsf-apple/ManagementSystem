@@ -16,8 +16,8 @@
                             </div>
                         @endif
                         {{-- {{Auth::user()->userID}} --}}
-                       {{-- // <button type="button" onclick="window.location='{{route('title.index')}}'" class="btn btn-primary">Back</button> --}}
-
+                       <button type="button" onclick="window.location='{{route('logbook.index')}}'" class="btn btn-primary">Back</button>
+                            <br><br>
                         <form method="post" action="{{ route('logbook.store') }}">
                             @csrf
                             <label for="project_title" class="form-label">Name:</label>
@@ -31,23 +31,23 @@
                             <label >{{$findsvname->fkLecture->lectureName}}</label><br>
                             @endforeach
 
-                            <label for="Startdate" class="form-label">Meeting date:</label>
-                            <input type="date" name="Startdate" id="Startdate" class="form-control"><br/>
+                            <label for="meetingDate" class="form-label">Meeting date:</label>
+                            <input type="date" name="meetingDate" id="meetingDate" class="form-control"><br/>
 
-                            <label for="Startdate" class="form-label">Start Time:</label>
-                            <input type="time" name="timestamp" id="Startdate" class="form-control"><br/>
+                            <label for="startTime" class="form-label">Start Time:</label>
+                            <input type="time" name="timestamp" id="startTime" class="form-control"><br/>
 
-                            <label for="Startdate" class="form-label">End Time:</label>
-                            <input type="time" name="timestamp" id="Startdate" class="form-control"><br/>
+                            <label for="endTime" class="form-label">End Time:</label>
+                            <input type="time" name="timestamp" id="endTime" class="form-control"><br/>
 
-                            <label for="project_description" class="form-label">Current progress:</label>
-                            <input type="text" name="project_description" id="project_description" class="form-control"><br/>
+                            <label for="currentProgress" class="form-label">Current progress:</label>
+                            <input type="text" name="currentProgress" id="currentProgress" class="form-control"><br/>
 
-                            <label for="project_description" class="form-label">discussion details:</label>
-                            <input type="text" name="project_description" id="project_description" class="form-control"><br/>
+                            <label for="discDetail" class="form-label">discussion details:</label>
+                            <input type="text" name="discDetail" id="discDetail" class="form-control"><br/>
 
-                            <label for="project_description" class="form-label">Action plan:</label>
-                            <input type="text" name="project_description" id="project_description" class="form-control"><br/>
+                            <label for="actPlan" class="form-label">Action plan:</label>
+                            <input type="text" name="actPlan" id="actPlan" class="form-control"><br/>
 
                             <input type="submit" name="submit" value="Submit Request" class="btn btn-success">
                         </form>
