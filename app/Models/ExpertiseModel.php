@@ -34,16 +34,32 @@ class ExpertiseModel extends Model
         
         $expertiseData = DB::table('lectureprofile')
         -> join('expertise', 'expertise.lectureId','=', 'lectureprofile.lectureId')
-        -> join('user', 'user.id','=', 'lectureprofile.user_id')
+        -> join('users', 'users.id','=', 'lectureprofile.user_id')
         -> where('expertise.lectureId', $user->lectureId)
-        -> select('expertise.*','lectureprofile.*','user.*')->get();
+        -> select('expertise.*','lectureprofile.*','users.*')->get();
         
         return $expertiseData;
     }
 
     public function indexView($id){
-        $lectureExpertise = DB::table('lectureprofile')-> join('expertise', 'expertise.lectureId','=', 'lectureprofile.lectureId')->where('expertise.lectureId', $id)->select('expertise.*','lectureprofile.*')->get();
+        $lectureExpertise = DB::table('lectureprofile')
+        -> join('expertise', 'expertise.lectureId','=', 'lectureprofile.lectureId')
+        -> join('users', 'users.id','=', 'lectureprofile.user_id')
+        -> where('expertise.lectureId', $id)
+        -> select('expertise.*','lectureprofile.*','users.*')
+        -> get();
         
         return $lectureExpertise;
+    }
+
+    public function listlecture()
+    {
+        $listlecture = DB::table('lectureprofile')
+        -> join('expertise', 'expertise.lectureId','=', 'lectureprofile.lectureId')
+        -> join('users', 'users.id','=', 'lectureprofile.user_id')
+        -> select('expertise.*','lectureprofile.*','users.*')
+        -> get();
+        
+        return $listlecture;
     }
 }

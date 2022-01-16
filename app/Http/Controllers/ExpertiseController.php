@@ -19,14 +19,18 @@ class ExpertiseController extends Controller
      */
     public function index()
     {
-        $result = new ExpertiseController();
+        $result = new ExpertiseModel();
 
-        $titlelist = $result->indexLecture();
-        return view('expertise.index', compact(['lectureExpertise']));
+        $listlecture = $result->listlecture();
+
+       return view('expertise.index',compact(['listlecture']));
     }
 
     public function viewExpertise(){
+        $result = new ExpertiseModel();
         
+        $lectureExpertise = $result->indexLecture();
+        return view('expertise.index', compact(['lectureExpertise']));
     }
 
     /**
