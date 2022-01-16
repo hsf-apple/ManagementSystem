@@ -14,7 +14,7 @@ class CreateInventoryusageTable extends Migration
     public function up()
     {
         Schema::create('inventoryusage', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('studentId')->nullable();
             $table->unsignedBigInteger('lectureId')->nullable();
             $table->unsignedBigInteger('itemId')->nullable();

@@ -13,7 +13,7 @@ class CreateStudentprofileTable extends Migration
      */
     public function up()
     {
-
+        if(Schema::hasTable('studentprofile')) return;
         Schema::create('studentprofile', function (Blueprint $table) {
             $table->id ('studentId');
             $table->integer('user_id')->unsigned()->nullable()->index();
