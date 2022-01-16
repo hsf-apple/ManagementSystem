@@ -15,8 +15,8 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        {{-- {{Auth::user()->userID}} --}}
-                        <button type="button" onclick="window.location='{{route('lecturedashboard')}}'" class="btn btn-primary">Back</button>
+                        {{-- {{Auth::user()->id}} --}}
+                        {{-- <button type="button" onclick="window.location='{{route('lecturedashboards')}}'" class="btn btn-primary">Back</button> --}}
                         <br><br>
                         {{-- <form method="post" action="{{ route('LectureProfile.update',$valuetitle->lectureId) }}">
                             @csrf

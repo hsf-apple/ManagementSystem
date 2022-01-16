@@ -61,7 +61,11 @@ class LectureController extends Controller
      */
     public function edit($id)
     {
+        $result = new lectureprofileModel();
 
+        $valuetitle = $result->changetitle1($id);
+
+        return view('lecture.edit',compact(['valuetitle']));
     }
 
     /**
