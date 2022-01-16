@@ -47,25 +47,12 @@ class lectureprofileModel extends Model
     }
 
      //index
-     public function changetitle()
-     {
-            //  $getsession = session()->get('userprimarykey');
-
-            //  $user = new lectureprofileModel();
-
-            //  $user = $user::where('user_id',$getsession)->first();
-
-            //  $inventorylist = lectureprofileModel::Select()->where('user_id',$user->user_id)->get();
-            $updatetitle = lectureprofileModel::findid(1);
-
-             return $updatetitle;
-     }
 
      public function changetitle1($data)
     {
-        $updatetitle = lectureprofileModel::find(1);
+        $updateprofile = lectureprofileModel::Select()->where('user_id',$data)->get();
 
-        return $updatetitle;
+        return $updateprofile;
     }
 
 

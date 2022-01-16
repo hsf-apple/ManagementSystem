@@ -15,12 +15,11 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        {{-- {{Auth::user()->id}} --}}
-                        {{-- <button type="button" onclick="window.location='{{route('lecturedashboards')}}'" class="btn btn-primary">Back</button> --}}
-                        <br><br>
-                        {{-- <form method="post" action="{{ route('LectureProfile.update',$valuetitle->lectureId) }}">
+                        {{-- {{Auth::user()->userID}} --}}
+                        @foreach ($updateprofile as $data)
+                        <form method="post" action="{{ route('LectureProfile.update',$data->lectureId) }}">
                             @csrf
-                            <input type="hidden" name="_method" value="PUT"> --}}
+                            <input type="hidden" name="_method" value="PUT">
 
                             <label for="field">Select a field:</label>
                             <select class="form-control" name="field">
@@ -30,14 +29,15 @@
                                 <option value="audi">Audi</option>
                             </select><br/>
 
-                            <label for="project_title" class="form-label">project title:</label>
-                            <input type="text" name="project_title" id="project_title" class="form-control" value="{{$valuetitle->lectureName}}"><br/>
+                            <label for="lectureName" class="form-label">project title:</label>
+                            <input type="text" name="lectureName" id="lectureName" class="form-control" value="{{$data->lectureName}}"><br/>
 
-                            <label for="project_description" class="form-label">project description:</label>
-                            <input type="text" name="project_description" id="project_description" class="form-control" value="{{$valuetitle->lectureName}}"><br/>
+                            <label for="lecturePhone" class="form-label">project description:</label>
+                            <input type="text" name="lecturePhone" id="lecturePhone" class="form-control" value="{{$data->lecturePhone}}"><br/>
 
-                            {{-- <input type="submit" name="submit" value="Update Title" class="btn btn-success">
-                        </form> --}}
+                            <input type="submit" name="submit" value="Update Title" class="btn btn-success">
+                        </form>
+                        @endforeach
                     </div>
                 </div>
             </div>
