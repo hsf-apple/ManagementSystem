@@ -35,8 +35,9 @@
                             @foreach ($listlogbookstudent as $logbooklist)
                             <tr>
                                 <td>letak no</td>
+                                <td>{{Auth::user()->studentprofileFK->studentName}}</td>
+                                {{-- <td>{{$logbooklist->fkLecture->lectureName}}</td> --}}
                                 <td>{{$logbooklist->meetingDate}}</td>
-                                <td>{{$logbooklist->startTime}}</td>
                             </tr>
 
                             @endforeach

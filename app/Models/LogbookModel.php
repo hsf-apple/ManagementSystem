@@ -43,7 +43,7 @@ class LogbookModel extends Model
 
         $user = $user::where('user_id',$getsession)->firstOrFail();
 
-        $titlelist = LogbookModel::Select()->where('studentId',$user->user_id)->get();
+        $titlelist = LogbookModel::Select()->where('studentId',$user->user_id)->with('fkLecture')->get();
 
         return $titlelist;
      }
