@@ -36,8 +36,22 @@
                             <tr>
                                 <td>letak no</td>
                                 <td>{{Auth::user()->studentprofileFK->studentName}}</td>
-                                {{-- <td>{{$logbooklist->fkLecture->lectureName}}</td> --}}
+                                <td>{{$logbooklist->fkLecture->lectureName}}</td>
                                 <td>{{$logbooklist->meetingDate}}</td>
+
+                                <td>
+                                    <button type="button" onclick="window.location='{{route('logbook.show',$logbooklist->id)}}'" class="btn btn-primary">view</button>
+
+                                    <br><br>
+                           
+                                    <form action="{{ route('logbook.update',$logbooklist->id) }}"  method="post">
+                                    @csrf
+                                    <input type="hidden" name="_method" value="PUT">
+
+                                    <input type="submit" value="Edit" class="btn btn-info">
+                                    </form>
+                            </td>
+
                             </tr>
 
                             @endforeach

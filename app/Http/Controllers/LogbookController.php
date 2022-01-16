@@ -29,6 +29,7 @@ class LogbookController extends Controller
 
         $checksv = $result->checksv();
 
+       
         return view('logbook.generatelogbook',compact(['checksv']));
     }
 
@@ -44,15 +45,15 @@ class LogbookController extends Controller
         return redirect('logbook');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        $result = new LogbookModel();
+
+       $datauser = $result->showspecificlogbook($id);
+
+       return view('logbook.viewlogbookspecific',compact(['datauser']));
+
     }
 
     /**
