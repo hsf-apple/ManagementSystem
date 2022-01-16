@@ -15,7 +15,7 @@ class LogbookController extends Controller
     {
         $result = new LogbookModel();
 
-        $inventorylist = $result->indexModel();
+        $inventorylist = $result->listlogbook();
 
        return view('logbook.index',compact(['inventorylist']));
     }
