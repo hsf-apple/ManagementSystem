@@ -19,26 +19,14 @@ class ExpertiseController extends Controller
      */
     public function index()
     {
-        //
-        // $getsession = session()->get('userprimarykey');
+        $result = new ExpertiseController();
 
-        // $isLecture = DB::table('user')->where('userID',$getsession)->value('islecture');
-
-        // switch($isLecture){
-        //     case 0:
-        //         $user = new studentprofileModel();
-        //         $user = $user::where('user_id',$getsession)->firstOrFail();
-        //         //
-        //         break;
-        //     case 1:
-        //         $user = new lectureprofileModel();
-        //         $user = $user::where('user_id',$getsession)->firstOrFail();
-        //         //
-        //         break;
-        // }
-        $lectureID = 1;
-        $lectureExpertise = DB::table('expertise')->join('lectureprofile', 'expertise.lectureId', '=','lectureprofile.lectureId')->where('expertise.lectureId', $lectureID)->select('expertise.*','lectureprofile.*')->get();
+        $titlelist = $result->indexLecture();
         return view('expertise.index', compact(['lectureExpertise']));
+    }
+
+    public function viewExpertise(){
+        
     }
 
     /**
