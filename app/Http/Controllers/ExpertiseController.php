@@ -27,10 +27,7 @@ class ExpertiseController extends Controller
     }
 
     public function viewExpertise(){
-        $result = new ExpertiseModel();
         
-        $lectureExpertise = $result->indexLecture();
-        return view('expertise.index', compact(['lectureExpertise']));
     }
 
     /**
@@ -77,9 +74,12 @@ class ExpertiseController extends Controller
      * @param  \App\Models\ExpertiseModel  $expertiseModel
      * @return \Illuminate\Http\Response
      */
-    public function show(ExpertiseModel $expertiseModel)
+    public function show($id)
     {
-        //
+        $result = new ExpertiseModel();
+        
+        $lectureExpertise = $result->indexLecture();
+        return view('expertise.view', compact(['lectureExpertise']));
     }
 
     /**
