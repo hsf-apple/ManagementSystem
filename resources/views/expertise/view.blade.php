@@ -21,23 +21,24 @@
 
                         @foreach ($lectureExpertise as $expertise)
                         <label for='expertiseName'>{{$expertise->expertiseName}}</label>
-
+                        <br>
+                        <div>
                         @switch($expertise->expertiseLevel)
                             @case('Very High')
-                                <progress id="file" value="100" max="100"> Very High </progress>
+                                <progress id="expertiseLevel" value="100" max="100"> Very High </progress>
                                 @break
                             @case('High')
-                                <progress id="file" value="75" max="100"> High </progress>
+                                <progress id="expertiseLevel" value="75" max="100"> High </progress>
                                 @break
                             @case('Medium')
-                                <progress id="file" value="50" max="100"> Medium </progress>
+                                <progress id="expertiseLevel" value="50" max="100"> Medium </progress>
                                 @break
                             @case('Low')
-                                <progress id="file" value="25" max="100"> Low </progress>
+                                <progress id="expertiseLevel" value="25" max="100"> Low </progress>
                                 @break
                             @default
-                        
                         @endswitch
+                        </div>
                         <br>
                         @endforeach
                     </div>
