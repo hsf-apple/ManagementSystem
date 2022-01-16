@@ -35,20 +35,9 @@
                             @foreach ($listlogbookstudent as $logbooklist)
                             <tr>
                                 <td>letak no</td>
-                                {{-- <td>{{$logbooklist->field}}</td>
-                                <td>{{$logbooklist->project_title}}</td> --}}
-                                <td>
-                                    {{-- <button type="button" onclick="window.location='{{route('title.edit',$logbooklist->id)}}'" class="btn btn-primary">Edit</button> --}}
-
-                                    <br><br>
-
-                                    {{-- <form action="{{ route('title.destroy',$logbooklist->id) }}" onsubmit="return confirm('Are you sure you want to cancel this request?');" method="post">
-                                    @csrf
-                                    <input type="hidden" name="_method" value="DELETE">
-
-                                    <input type="submit" value="Delete" class="btn btn-danger">
-                                    </form> --}}
-                            </td>
+                                <td>{{Auth::user()->studentprofileFK->studentName}}</td>
+                                {{-- <td>{{$logbooklist->fkLecture->lectureName}}</td> --}}
+                                <td>{{$logbooklist->meetingDate}}</td>
                             </tr>
 
                             @endforeach
