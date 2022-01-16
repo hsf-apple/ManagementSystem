@@ -38,6 +38,13 @@ class studentprofileModel extends Model
         return $this->hasMany('App\Models\TitleModel','studentId','studentId');
     }
 
+    public function logbook()
+    {
+        return $this->hasMany('App\Models\LogbookModel','studentId','studentId');
+    }
+
+
+
 
     public function updateStudent($data, $id)//inventory item
     {

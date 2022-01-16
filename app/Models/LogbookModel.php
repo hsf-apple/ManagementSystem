@@ -9,7 +9,7 @@ class LogbookModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'studentprofile';
+    protected $table = 'logbook';
 
     protected $fillable= [
         'meetingDate',
@@ -33,142 +33,33 @@ class LogbookModel extends Model
         return $this->belongsTo('App\Models\lectureprofileModel','lectureId','lectureId');
     }
 
-    //index
-    public function indexModel()
-    {
-            //retrive user Primary Key data by using session (get from LoginController)
-            $getsession = session()->get('userprimarykey');
+     //index
+     public function listlogbook()
+     {
 
-            //create object of class model studentprofileModel
-            $user = new studentprofileModel();
+             $getsession = session()->get('userprimarykey');
 
-            //find the first user_id data (foreign key) in db (table: studentprofile)
-            $user = $user::where('user_id',$getsession)->firstOrFail();
+             $user = new studentprofileModel();
 
-            //get all LogbookModel primary key for specific user
-            //use 'with()' in order to access data from other table by using foreign key (itemId)
-            //go to LogbookModel function inventoryitem()
-            $logbookList = LogbookModel::Select()->where('studentId',$user->studentId)->with('fkStudent')->get();
+             $user = $user::where('user_id',$getsession)->firstOrFail();
 
-            return $logbookList;
-    }
+             $titlelist = LogbookModel::Select()->where('studentId',$user->fkStudent)->get();
 
-    //create
-    public function create()
-    {
-        //get list inventoryname and id if value not 0
-        $logbook = LogbookModel::Select()->get();
+             return $titlelist;
+     }
 
-        return $logbook;
-    }
+     public function checksv()
+     {
 
-    //store (BLom siap)
-    public function store($data)
-    {
-                //retrive user Primary Key data by using session (get from LoginController)
-                $getsession = $data->session()->get('userprimarykey');
+             $getsession = session()->get('userprimarykey');
 
-                //create object of class model studentprofileModel
-                $user = new studentprofileModel();
+             $user = new studentprofileModel();
 
-                //find the first user_id data (foreign key) in db (table: studentprofile)
-                $user = $user::where('user_id',$getsession)->firstOrFail();
+             $user = $user::where('user_id',$getsession)->firstOrFail();
 
-                //retieve all input data
-                $inventoryusage = $data->all();
+             $checksv = ApprovalModel::Select()->where('studentId',$user->fkStudent)->with()->get();
 
-                //create object of class model inventoryusage
-                $addinventory = new inventoryUsage($inventoryusage + ['status'=>'pending']);
+             return $checksv;
+     }
 
-                //save data in function studentprofileModel called inventoryusage()
-                $user->inventoryusage()->save($addinventory);
-
-    }
-
-    //delete
-    public function deleteinventory($data)
-    {
-        $deleterequest = inventoryUsage::findOrFail($data);
-        $deleterequest->delete();
-    }
-
-    //approve list
-    public function studentApprovelist()
-    {
-        $listAllapprove = inventoryUsage::Select()->where('status','like','Approve')->with('studentprofile')->with('lectureprofile')->get();
-
-       return $listAllapprove;
-    }
-
-    //display index admin dashboard
-    public function listRequestLecture()
-    {
-        $listAll = inventoryUsage::Select()->where('status','LIKE','pending')->with('studentprofile')->get();
-
-       return $listAll;
-
-    }
-
-    //display approve list  for lecture
-    public function listApprovetLecture()
-    {
-        $listAllApprove = inventoryUsage::Select()->where('status','LIKE','Approve')->with('studentprofile')->get();
-
-        return $listAllApprove;
-
-    }
-
-
-    public function updateinventory($data, $dataid)
-    {
-        $postupdate = inventoryUsage::whereid($dataid)->first();
-
-        //retrive user Primary Key data by using session (get from LoginController)
-        $getsession = $data->session()->get('userprimarykey');
-
-        //create object of class model lectureprofileModel
-        $user = new lectureprofileModel();
-
-       //find the first user_id data (foreign key) in db (table: lectureprofile)
-       $user = $user::where('user_id',$getsession)->firstOrFail();
-
-
-
-        switch($data->submitbutton)
-        {
-            case 'Approve Request':
-
-            $postupdate->status = "Approve";
-
-           $user->inventoryusage()->save($postupdate);
-
-
-            //get quantity value from inventoryitemModel model
-            $valueInventoryitem = $postupdate->inventoryitem->quantity;
-
-            //  latest quantity value  = quantity value -1
-            $latestvalue = $valueInventoryitem - 1;
-
-            //get itemId primary key
-            $foreignkeyItemId = $postupdate->itemId;
-
-            //find itemId in db
-            $updateinventoryItem = inventoryitemModel::where('itemId',$foreignkeyItemId)->first();
-
-            //update latest quantity value
-            $updateinventoryItem->quantity = $latestvalue;
-
-            //update data
-            $updateinventoryItem->save();
-
-            break;
-            case 'Reject Request':
-
-            $postupdate->status = "Reject";
-
-            $user->inventoryusage()->save($postupdate);
-
-            break;
-        }
-    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApprovalModel;
 use Illuminate\Http\Request;
 use App\Models\LogbookModel;
 class LogbookController extends Controller
@@ -15,19 +16,20 @@ class LogbookController extends Controller
     {
         $result = new LogbookModel();
 
-        $inventorylist = $result->listlogbook();
+        $listlogbookstudent = $result->listlogbook();
 
-       return view('logbook.index',compact(['inventorylist']));
+
+       return view('logbook.index',compact(['listlogbookstudent']));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        $result = new ApprovalModel();
+
+        $checksv = $result->checksv();
+
+        return view('logbook.generatelogbook',compact(['checksv']));
     }
 
     /**
