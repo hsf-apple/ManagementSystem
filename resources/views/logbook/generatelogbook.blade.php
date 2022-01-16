@@ -28,9 +28,12 @@
                             <label for="project_description" class="form-label">Matric ID:</label>
                             <label style="margin-left:2.5em">{{Auth::user()->userID}}</label><br><br>
 
+                            @foreach ($checksv as $findsvname)
                             <label for="project_description" class="form-label">Supervisor Name:</label>
+                            <label >{{$findsvname->fkLecture->lectureName}}</label>
+                            @endforeach
 
-
+                            <br><br>
                             <label for="project_description" class="form-label">Matric ID:</label>
                             <input type="text" name="project_description" id="project_description" class="form-control"><br/>
 

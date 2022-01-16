@@ -57,9 +57,9 @@ class LogbookModel extends Model
 
              $user = $user::where('user_id',$getsession)->firstOrFail();
 
-             $checksv = ApprovalModel::Select()->where('studentId',$user->fkStudent)->with()->get();
+             $checksv1 = ApprovalModel::Select()->where('studentId',$user->user_id)->with('fkLecture')->get();
 
-             return $checksv;
+             return $checksv1;
      }
 
 }

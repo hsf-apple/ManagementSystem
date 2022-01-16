@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\inventoryusageController;
 use App\Http\Controllers\TitleController;
 use App\Http\Controllers\ExpertiseController;
@@ -71,4 +72,7 @@ Route::resource('/logbook', LogbookController::class);
 
 //lecture
 Route::resource('/LectureProfile', LectureController::class);
+
+//approval
+Route::resource('/Approval', ApprovalController::class);
 
