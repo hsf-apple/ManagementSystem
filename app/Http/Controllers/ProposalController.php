@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProposalModel;
 use Illuminate\Http\Request;
 
 class ProposalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $result = new ProposalModel();
+
+        $listlecture = $result->listlecture();
+
+       return view('proposal.searchsupervisor',compact(['listlecture']));
     }
 
     /**

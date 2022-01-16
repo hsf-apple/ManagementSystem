@@ -8,4 +8,34 @@ use Illuminate\Database\Eloquent\Model;
 class ProposalModel extends Model
 {
     use HasFactory;
+    protected $table = '_title';
+    protected $fillable= [
+        'project_title',
+        'objective',
+        'project_scope',
+        'problem_background',
+        'software',
+        'tools',
+        'project_domain',
+    ];
+     protected $guarded = ['studentId','lectureId'];
+    public $timestamps = false;
+
+    public function lectureprofile()
+    {
+        return $this->belongsTo('App\Models\lectureprofileModel','lectureId','lectureId');
+    }
+    public function studentprofile()
+    {
+        return $this->belongsTo('App\Models\studentprofileModel','studentId','studentId');
+    }
+
+
+    public function listlecture()
+    {
+        $listlecture = lectureprofileModel::Select()->get();
+
+        return $listlecture;
+    }
+
 }
