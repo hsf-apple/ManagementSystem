@@ -69,7 +69,7 @@ Route::put('/Book/{id}', [TitleController::class, 'Book'])->name('Book');
 
 //Logbook
 Route::resource('/logbook', LogbookController::class);
-Route::get('/logbook/lecturedashboard', [LogbookController::class, 'indexlecture'])->name('indexlecture');
+Route::get('/logbook/indexlecture', [LogbookController::class, 'indexlecture'])->name('indexlecture');
 
 //lecture
 Route::resource('/LectureProfile', LectureController::class);
