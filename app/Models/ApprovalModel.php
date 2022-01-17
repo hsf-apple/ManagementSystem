@@ -12,12 +12,8 @@ class ApprovalModel extends Model
     protected $table = '_approval';
 
     protected $fillable= [
-        'meetingDate',
-        'startTime',
-        'endTime',
-        'currentProgress',
-        'discDetail',
-        'actPlan'
+       'status',
+        'reasons'
     ];
 
     protected $guarded = ['studentId', 'lectureId','prososalID'];
@@ -48,10 +44,33 @@ class ApprovalModel extends Model
 
         $user = $user::where('user_id',$getsession)->firstOrFail();
 
-        $titlelist = TitleModel::Select()->where('lectureId',$user->lectureId)->get();
+        $titlelist = ProposalModel::Select()->where('lectureId',$user->lectureId)->with('studentprofile')->get();
 
         return $titlelist;
     }
 
+    public function showspecificproposaldata($data)
+    {
+        $updatetitle = ProposalModel::findOrFail($data);
+
+        return $updatetitle;
+    }
+    public function findmatricId($data)
+    {
+        $updatetitle = User::findOrFail($data);
+
+        return $updatetitle;
+    }
+
+    //store
+    public function store($data)
+    {
+
+        $addtitlefkvalue = $data->all();
+
+        $addtitlefinal = new ApprovalModel($addtitlefkvalue);
+
+        $addtitlefinal->save();
+    }
 
 }

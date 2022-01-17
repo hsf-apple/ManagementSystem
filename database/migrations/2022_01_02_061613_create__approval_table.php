@@ -17,15 +17,14 @@ class CreateApprovalTable extends Migration
             $table->id('approvalID');
             $table->unsignedBigInteger('studentId')->nullable();
             $table->unsignedBigInteger('lectureId')->nullable();
-            $table->unsignedBigInteger('prososalID')->nullable();
-            $table->string('status');
+            $table->unsignedBigInteger('proposalID')->nullable();
             $table->string('status');
             $table->string('reasons');
 
             //foreign key
             $table->foreign('studentId')->references('studentId')->on('studentprofile');
             $table->foreign('lectureId')->references('lectureId')->on('lectureprofile');
-            $table->foreign('prososalID')->references('prososalID')->on('proposal');
+            $table->foreign('proposalID')->references('proposalID')->on('proposal');
         });
     }
 

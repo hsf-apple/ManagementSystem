@@ -11,31 +11,39 @@ class ApprovalController extends Controller
     public function index()
     {
         $result = new  ApprovalModel();
+        $listproposal = $result->indexapprovalstatus();
+        print($listproposal);
 
-        $titlelist = $result->indexapprovalstatus();
-
-        return view('title.indextitle',compact(['titlelist']));
+        return view('approval.indexlecture',compact(['listproposal']));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function viewApproval($id)
+    {
+        $result = new ApprovalModel();
+        $specificproposaldata = $result->showspecificproposaldata($id);
+        $matricID = $specificproposaldata->studentprofile->user_id;
+        $findMatricId = $result->findmatricId($matricID);
+
+        return view('approval.addstatusapproval',compact(['specificproposaldata','findMatricId']));
+    }
+
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+
+        $result = new ApprovalModel();
+
+        $data = $request;
+
+        $result->store($data);
+
+
+        return redirect('Approval');
     }
 
     /**

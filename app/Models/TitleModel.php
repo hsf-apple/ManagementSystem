@@ -58,17 +58,17 @@ class TitleModel extends Model
     public function store($data)
     {
 
-                $getsession = $data->session()->get('userprimarykey');
+        $getsession = $data->session()->get('userprimarykey');
 
-                $user = new lectureprofileModel();
+        $user = new lectureprofileModel();
 
-                $user = $user::where('user_id',$getsession)->firstOrFail();
+        $user = $user::where('user_id',$getsession)->firstOrFail();
 
-                $addtitlefkvalue = $data->all();
+        $addtitlefkvalue = $data->all();
 
-                $addtitlefinal = new TitleModel($addtitlefkvalue);
+        $addtitlefinal = new TitleModel($addtitlefkvalue);
 
-                $user->title()->save($addtitlefinal);
+        $user->title()->save($addtitlefinal);
     }
 
     public function changetitle($data)

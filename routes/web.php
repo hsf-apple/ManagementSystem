@@ -80,6 +80,6 @@ Route::resource('/LectureProfile', LectureController::class);
 
 //approval
 Route::resource('/Approval', ApprovalController::class);
-
+Route::get('/viewApproval/{id}', [ApprovalController::class, 'viewApproval'])->name('viewApproval');
 //proposal
 Route::resource('/SvHunting', SvHuntingController::class);

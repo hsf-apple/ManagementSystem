@@ -68,23 +68,23 @@ class inventoryUsage extends Model
     //store
     public function store($data)
     {
-                //retrive user Primary Key data by using session (get from LoginController)
-                $getsession = $data->session()->get('userprimarykey');
+        //retrive user Primary Key data by using session (get from LoginController)
+        $getsession = $data->session()->get('userprimarykey');
 
-                //create object of class model studentprofileModel
-                $user = new studentprofileModel();
+        //create object of class model studentprofileModel
+        $user = new studentprofileModel();
 
-                //find the first user_id data (foreign key) in db (table: studentprofile)
-                $user = $user::where('user_id',$getsession)->firstOrFail();
+        //find the first user_id data (foreign key) in db (table: studentprofile)
+        $user = $user::where('user_id',$getsession)->firstOrFail();
 
-                //retieve all input data
-                $inventoryusage = $data->all();
+        //retieve all input data
+        $inventoryusage = $data->all();
 
-                //create object of class model inventoryusage
-                $addinventory = new inventoryUsage($inventoryusage + ['status'=>'pending']);
+        //create object of class model inventoryusage
+        $addinventory = new inventoryUsage($inventoryusage + ['status'=>'pending']);
 
-                //save data in function studentprofileModel called inventoryusage()
-                $user->inventoryusage()->save($addinventory);
+        //save data in function studentprofileModel called inventoryusage()
+        $user->inventoryusage()->save($addinventory);
 
     }
 
