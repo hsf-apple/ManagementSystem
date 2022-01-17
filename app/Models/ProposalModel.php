@@ -32,7 +32,7 @@ class ProposalModel extends Model
 
     public function fkproposalinApproval()
     {
-        return $this->hasOne('App\Models\ApprovalModel','prososalID', 'prososalID');
+        return $this->hasOne('App\Models\ApprovalModel','proposalID', 'proposalID');
     }
 
 
