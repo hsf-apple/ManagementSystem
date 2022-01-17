@@ -1,19 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\ApprovalModel;
 use Illuminate\Http\Request;
 
 class ApprovalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    //display approval status
     public function index()
     {
-        //
+        $result = new  ApprovalModel();
+
+        $titlelist = $result->indexapprovalstatus();
+
+        return view('title.indextitle',compact(['titlelist']));
     }
 
     /**

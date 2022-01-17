@@ -32,4 +32,21 @@ class ApprovalModel extends Model
     {
         return $this->belongsTo('App\Models\lectureprofileModel','lectureId','lectureId');
     }
+
+    //display approval status
+    public function indexapprovalstatus()
+    {
+
+        $getsession = session()->get('userprimarykey');
+
+        $user = new lectureprofileModel();
+
+        $user = $user::where('user_id',$getsession)->firstOrFail();
+
+        $titlelist = TitleModel::Select()->where('lectureId',$user->lectureId)->get();
+
+        return $titlelist;
+    }
+
+
 }
