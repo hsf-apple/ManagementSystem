@@ -45,6 +45,11 @@ class lectureprofileModel extends Model
         return $this->belongsTo('App\Models\User','id','user_id');
     }
 
+    public function svHunting()
+    {
+        return $this->hasMany('App\Models\SvHuntingModel','studentId','studentId');
+    }
+
      //index
 
      public function changetitle1($data)

@@ -16,8 +16,8 @@
                             </div>
                         @endif
                         {{-- {{Auth::user()->userID}} --}}
-                        @foreach ($studentInfo as $studentInfo)
-                            <form method="post" action="{{ route('SvHunting.store') }}">
+                        @foreach ($showProposal as $showProposal)
+                            <form method="post" action="{{ route('SvHunting.edit') }}">
                                 @csrf
                                 {{-- <label for='expertiseName'>Enter Expertise Name: </label>
                                 <input type="text" name="expertiseName" class="form-control"><br/>
@@ -36,56 +36,47 @@
                                     </tr>
                                     <tr>
                                         <td><label for='studentName'>Name:  </label></td>
-                                        <td>{{$studentInfo->studentName}}</td>
+                                        <td>{{$showProposal->studentName}}</td>
                                         <td><label for='project_title'>Project Title:  </label></td>
-                                        <td><input type="text" name="project_title" class="form-control"></td>
+                                        <td>{{$showProposal->project_title}}</td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td><label for='userID'>Matrix ID:  </label></td>
-                                        <td>{{$studentInfo->userID}}</td>
+                                        <td>{{$showProposal->userID}}</td>
                                         <td><label for='objective'>Objective:  </label></td>
-                                        <td ><textarea id="objective" name="objective" rows="3"></textarea></td>
+                                        <td>{{$showProposal->objective}}</td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td></td>
                                         <td></td>
                                         <td><label for='project_scope'>Project Scope:  </label></td>
-                                        <td><textarea id="project_scope" name="project_scope" rows="3"></textarea></td>
+                                        <td>{{$showProposal->project_scope}}</td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td></td>
                                         <td></td>
                                         <td><label for='problem_background'>Problem Background:  </label></td>
-                                        <td><textarea id="problem_background" name="problem_background" rows="3"></textarea></td>
+                                        <td>{{$showProposal->problem_background}}</td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td></td>
                                         <td></td>
                                         <td><label for='software'>Software:  </label></td>
-                                        <td><textarea id="software" name="software" rows="3"></textarea></td>
+                                        <td>{{$showProposal->software}}</td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td></td>
                                         <td></td>
                                         <td><label for='tools'>Tools:  </label></td>
-                                        <td><textarea id="tools" name="tools" rows="3"></textarea></td>
+                                        <td>{{$showProposal->tools}}</td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td></td>
                                         <td></td>
                                         <td><label for='project_domain'>Project Domain:  </label></td>
-                                        <td>
-                                            <select class="form-control" name="project_domain">
-                                                <option value="CS">(CS) Computer Science</option>
-                                                <option value="SN">Computer Systems & Networking</option>
-                                                <option value="SE">Software Engineering</option>
-                                                <option value="GMM">Graphics & Multimedia</option>
-                                                <option value="CY">Cyber Security</option>
-                                            </select>
-                                        </td>
+                                        <td>{{$showProposal->project_domain}}</td>
                                     </tr>
-                                </table>
-                                <input type="submit" name="submit" value="Submit" class="btn btn-success">
+                                    <input type="submit" name="submit" value="Edit" class="btn btn-success">
                             </form>
                         @endforeach 
                             

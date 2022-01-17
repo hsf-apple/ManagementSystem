@@ -4,6 +4,7 @@
     <a href="#news">News</a>
     <a href="{{route('listtitle')}}">Title list</a>
     <a href="{{route('SvHunting.index')}}">search supervisor</a>
+    <a href="{{route('mySupervisor')}}">My Supervisor</a>
     <a href="{{route('inventory.index')}}">inventory usage</a>
     <a href="{{route('logbook.index')}}">Logbook</a>
     <a href="#about">About</a>

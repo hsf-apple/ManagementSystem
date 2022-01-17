@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('layouts.adminsidebar')
+@include('layouts.sidebar')
 <main class="py-4">  {{--create spacing --}}
     <div class="content">
         <div class="row justify-content-center">
@@ -43,7 +43,7 @@
                         
                         
                         @endforeach
-                        <button type="button" onclick="window.location='{{route('SvHunting.create',$expertise->lectureId)}}'" class="btn btn-primary">Select</button>
+                        <button type="button" id="lectureId" name='lectureId' onclick="window.location='{{route('addProposal',$expertise->lectureId)}}'" class="btn btn-primary">Select</button>
                     </div>
                 </div>
             </div>

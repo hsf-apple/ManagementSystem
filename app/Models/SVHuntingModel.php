@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use PDO;
 
 class SVHuntingModel extends Model
 {
     use HasFactory;
-    protected $table = '_title';
+    protected $table = 'proposal';
     protected $fillable= [
         'project_title',
         'objective',
@@ -31,6 +32,10 @@ class SVHuntingModel extends Model
     public function studentprofile()
     {
         return $this->belongsTo('App\Models\studentprofileModel','studentId','studentId');
+    }
+
+    public function studentLecture(){
+        return $data = collect([$this->lectureprofile, $this->studentprofile]);
     }
 
     public function lectureList(){
@@ -57,20 +62,70 @@ class SVHuntingModel extends Model
         
         return $studentInfo;
     }
+    public function store($data)
+    {
+        $lectureId=Session::get('lectureId');
 
-    public function viewProposal(){
+        $getsession = $data->session()->get('userprimarykey');
 
+        $user = new studentprofileModel();
+
+        $user = $user::where('user_id',$getsession)->firstOrFail();
+
+        $lecture = new lectureprofileModel();
+
+        $lecture = $lecture::where('lectureId',$lectureId)->firstOrFail();
+        
+        $addProposal = $data->all();
+
+        $addProposalFinal = new SVHuntingModel($addProposal);
+
+        $addProposalFinal->lectureId = $lecture->lectureId;
+
+        $user->svHunting()->save($addProposalFinal);
     }
 
-    public function changeProposal(){
+    public function viewProposal($id){
+        $getsession = session()->get('userprimarykey');
 
+        $user = new studentprofileModel();
+
+        $user = $user::where('user_id',$getsession)->firstOrFail();
+
+        $listProposal = DB::table('proposal')
+        -> join('lectureprofile', 'lectureprofile.lectureId','=', 'proposal.lectureId')
+        -> join('users', 'users.id','=', 'lectureprofile.user_id')
+        -> join('studentprofile', 'studentprofile.studentId','=', 'proposal.studentId')
+        -> where('proposal.id',$id)
+        -> select('lectureprofile.*','users.*','proposal.*','studentprofile.*')
+        -> get();
+        
+        return $listProposal;
+    }
+
+    public function mySupervisor(){
+        $getsession = session()->get('userprimarykey');
+
+        $user = new studentprofileModel();
+
+        $user = $user::where('user_id',$getsession)->firstOrFail();
+
+        $listProposal = DB::table('proposal')
+        -> join('lectureprofile', 'lectureprofile.lectureId','=', 'proposal.lectureId')
+        -> join('users', 'users.id','=', 'lectureprofile.user_id')
+        -> where('proposal.studentId',$user->studentId)
+        -> select('lectureprofile.*','users.*','proposal.*')
+        -> get();
+        
+        return $listProposal;
     }
 
     public function updateProposal(){
 
     }
 
-    public function deleteTitle(){
-        
+    public function deleteProposal($data){
+        $deleterequest = SVHuntingModel::findOrFail($data);
+        $deleterequest->delete();
     }
 }
