@@ -45,12 +45,7 @@ class TitleController extends Controller
        return view('title.showtitlespecific',compact(['showtitlespecifc']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $result = new TitleModel();
