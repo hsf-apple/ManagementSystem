@@ -34,7 +34,7 @@
                                 <td>{{$proposalTitle->project_title}}</td>
                                 <td><button type="button" onclick="window.location=''" class="btn btn-primary">edit me</button></td>
                                 <td>
-                                    <button type="button" onclick="window.location=''" class="btn btn-primary">View</button>
+                                    <button type="button" onclick="window.location='{{route('ProposalView', $proposalTitle->id)}}'" class="btn btn-primary">View</button>
 
                                     <br><br>
 

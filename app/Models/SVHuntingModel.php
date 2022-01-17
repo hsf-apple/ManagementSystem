@@ -85,8 +85,22 @@ class SVHuntingModel extends Model
         $user->svHunting()->save($addProposalFinal);
     }
 
-    public function viewProposal(){
+    public function viewProposal($id){
+        $getsession = session()->get('userprimarykey');
 
+        $user = new studentprofileModel();
+
+        $user = $user::where('user_id',$getsession)->firstOrFail();
+
+        $listProposal = DB::table('proposal')
+        -> join('lectureprofile', 'lectureprofile.lectureId','=', 'proposal.lectureId')
+        -> join('users', 'users.id','=', 'lectureprofile.user_id')
+        -> join('studentprofile', 'studentprofile.studentId','=', 'proposal.studentId')
+        -> where('proposal.id',$id)
+        -> select('lectureprofile.*','users.*','proposal.*','studentprofile.*')
+        -> get();
+        
+        return $listProposal;
     }
 
     public function mySupervisor(){

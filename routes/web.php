@@ -85,3 +85,4 @@ Route::get('/viewApproval/{id}', [ApprovalController::class, 'viewApproval'])->n
 Route::resource('/SvHunting', SvHuntingController::class);
 Route::get('/AddProposal/{id}', [SvHuntingController::class, 'addProposal'])->name('addProposal');
 Route::get('/MySupervisor', [SvHuntingController::class, 'mySupervisor'])->name('mySupervisor');
+Route::get('/ProposalView/{id}', [SvHuntingController::class, 'view'])->name('ProposalView');
