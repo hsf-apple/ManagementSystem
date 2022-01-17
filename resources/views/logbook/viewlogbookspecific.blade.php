@@ -16,9 +16,9 @@
                             </div>
                         @endif
                         {{-- {{Auth::user()->userID}} --}}
-                        <button type="button" onclick="window.location='{{route('listtitle')}}'" class="btn btn-primary">Back</button>
+                        <button type="button" onclick="window.location='{{route('logbook.index')}}'" class="btn btn-primary">Back</button>
                             <br><br>
-                      
+
                         <label>Name:</label>
                         <label >{{$datauser->fkStudent->studentName}}</label> <br>
 
@@ -26,7 +26,8 @@
                         <label >{{Auth::user()->userID}}</label> <br>
 
                         <label>Supervisor Name:</label>
-                        <label >{{$datauser->fkLecture->lectureName}}</label> <br>
+                        <label >{{$aa11->fkLecture->lectureName}}</label> <br>
+
 
                         <label>Meeting date:</label>
                         <label >{{$datauser->meetingDate}}</label> <br>
@@ -42,13 +43,13 @@
 
                         <label>Current Progress:</label>
                         <label >{{$datauser->currentProgress}}</label> <br>
-                        
+
                         <label>Discription Detail:</label>
                         <label >{{$datauser->discDetail}}</label> <br>
 
                         <label>actual plan:</label>
                         <label >{{$datauser->actPlan}}</label> <br>
-                        
+
 
                     </div>
                 </div>

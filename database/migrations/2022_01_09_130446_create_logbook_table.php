@@ -23,6 +23,7 @@ class CreateLogbookTable extends Migration
             $table->text('currentProgress');
             $table->text('discDetail');
             $table->text('actPlan');
+            $table->boolean('logbookStatus');
 
             //foreign key
             $table->foreign('studentId')->references('studentId')->on('studentprofile');

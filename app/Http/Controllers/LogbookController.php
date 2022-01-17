@@ -17,9 +17,12 @@ class LogbookController extends Controller
         $result = new LogbookModel();
 
         $listlogbookstudent = $result->listlogbook();
+        $aa11 = $result->listlogbooktest();
 
-        print($listlogbookstudent);
-      return view('logbook.index',compact(['listlogbookstudent']));
+        // print($aa11);
+
+        // print($listlogbookstudent);
+      return view('logbook.index',compact(['listlogbookstudent','aa11']));
     }
 
 
@@ -29,7 +32,7 @@ class LogbookController extends Controller
 
         $checksv = $result->checksv();
 
-       
+
         return view('logbook.generatelogbook',compact(['checksv']));
     }
 
@@ -51,40 +54,35 @@ class LogbookController extends Controller
         $result = new LogbookModel();
 
        $datauser = $result->showspecificlogbook($id);
+       $aa11 = $result->listlogbooktest();
 
-       return view('logbook.viewlogbookspecific',compact(['datauser']));
-
+       return view('logbook.viewlogbookspecific',compact(['datauser','aa11']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $result = new LogbookModel();
+
+        $data = $id;
+
+        $editlogbookdata = $result->editlogbook($data);
+        $checksv = $result->checksv();
+
+        return view('logbook.editlogbook',compact(['editlogbookdata','checksv']));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $result = new LogbookModel();
+        $data = $request;
+        $dataid = $id;
+
+        $result->PUTmethod($data,$dataid);
+
+        return redirect('logbook');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

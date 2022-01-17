@@ -20,7 +20,7 @@ class LogbookModel extends Model
         'actPlan'
     ];
 
-    protected $guarded = ['studentId', 'lectureId'];
+    protected $guarded = ['studentId', 'lectureId','logbookStatus'];
     public $timestamps = false;
 
     public function fkStudent()
@@ -47,6 +47,23 @@ class LogbookModel extends Model
 
         return $titlelist;
      }
+
+
+     //display sv data in index
+     public function listlogbooktest()
+     {
+
+        $getsession = session()->get('userprimarykey');
+
+        $user = new studentprofileModel();
+
+        $user = $user::where('user_id',$getsession)->firstOrFail();
+
+        $checksvforFKinsert = ApprovalModel::where('studentId',$user->user_id)->with('fkLecture')->first();
+
+        return $checksvforFKinsert;
+     }
+
 
      public function checksv()
      {
@@ -79,7 +96,7 @@ class LogbookModel extends Model
         $checksvforFKinsert = ApprovalModel::where('studentId',$user->user_id)->first();
 
         $saveinfunctionstudent = new LogbookModel($addlogbookdata);
-      
+
         $saveinfunctionstudent->lectureId = $checksvforFKinsert->fkLecture->lectureId;
 
         $user->logbook()->save($saveinfunctionstudent);
@@ -87,9 +104,22 @@ class LogbookModel extends Model
 
     public function showspecificlogbook($data)
      {
-         $updatetitle = LogbookModel::findOrFail($data);
+        $updatetitle = LogbookModel::findOrFail($data);
 
-         return $updatetitle;
+        return $updatetitle;
+     }
+
+     public function editlogbook($data)
+     {
+        $updatelogbook = LogbookModel::findOrFail($data);
+
+        return $updatelogbook;
+     }
+
+     public function PUTmethod($data, $dataid)
+     {
+         $postupdate = LogbookModel::whereid($dataid)->first();
+         $postupdate->update($data->all());
      }
 
 }
