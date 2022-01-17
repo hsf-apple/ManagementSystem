@@ -26,8 +26,13 @@ class ExpertiseController extends Controller
        return view('expertise.index',compact(['listlecture']));
     }
 
-    public function viewExpertise(){
 
+    public function view($id){
+        $result = new ExpertiseModel();
+        
+        $lectureExpertise = $result->indexView($id);
+        
+        return view('expertise.viewStudent', compact(['lectureExpertise']));
     }
 
     /**
@@ -37,16 +42,9 @@ class ExpertiseController extends Controller
      */
     public function create()
     {
-      //  return "sfsfsf";
         return view('expertise.edit');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //retrive user Primary Key data by using session (get from LoginController)
@@ -74,11 +72,11 @@ class ExpertiseController extends Controller
      * @param  \App\Models\ExpertiseModel  $expertiseModel
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         $result = new ExpertiseModel();
 
-        $lectureExpertise = $result->indexLecture($id);
+        $lectureExpertise = $result->indexLecture();
         return view('expertise.view', compact(['lectureExpertise']));
     }
 

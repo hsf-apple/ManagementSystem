@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class SvHuntingController extends Controller
 {
-    public function listSupervisor()
+    public function index()
     {
-        $result = new SvHuntingController();
+        $result = new SVHuntingModel();
 
         $listlecture = $result->lectureList();
 
@@ -30,7 +30,11 @@ class SvHuntingController extends Controller
      */
     public function create()
     {
-        return view('SvHunting.addProposal');
+        $result = new SVHuntingModel();
+
+        $studentInfo = $result->studentInfo();
+
+        return view('SvHunting.addProposal',compact(['studentInfo']));
     }
 
     /**
