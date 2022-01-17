@@ -14,7 +14,7 @@ class ProposalController extends Controller
 
         $listlecture = $result->listlecture();
 
-       return view('proposal.searchsupervisor',compact(['listlecture']));
+       return view('SvHunting.searchsupervisor',compact(['listlecture']));
     }
 
     /**

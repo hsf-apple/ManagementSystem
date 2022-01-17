@@ -22,7 +22,7 @@
                             </tr>
                             @foreach ($listlecture as $data)
                             <tr>
-                                <td><a href="{{route('expertise.index')}}">{{$data->lectureName}}</a></td>
+                                <td><a href="{{route('expertise.show',$data->lectureId )}}">{{$data->lectureName}}</a></td>
                                 {{-- <a href="{{ URL::route('articles.edit', $article->id) }}">Edit</a> --}}
                              </tr>
                              @endforeach

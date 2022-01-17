@@ -25,19 +25,19 @@ class ExpertiseModel extends Model
         return $this->belongsTo('App\Models\lectureprofileModel','lectureId','lectureId');
     }
 
-    public function indexLecture(){
+    public function indexLecture($id){
         $getsession = session()->get('userprimarykey');
 
         $user = new lectureprofileModel();
 
         $user = $user::where('user_id',$getsession)->firstOrFail();
-        
+
         $expertiseData = DB::table('lectureprofile')
         -> join('expertise', 'expertise.lectureId','=', 'lectureprofile.lectureId')
         -> join('users', 'users.id','=', 'lectureprofile.user_id')
         -> where('expertise.lectureId', $user->lectureId)
         -> select('expertise.*','lectureprofile.*','users.*')->get();
-        
+
         return $expertiseData;
     }
 
@@ -48,7 +48,7 @@ class ExpertiseModel extends Model
         -> where('expertise.lectureId', $id)
         -> select('expertise.*','lectureprofile.*','users.*')
         -> get();
-        
+
         return $lectureExpertise;
     }
 
@@ -59,7 +59,7 @@ class ExpertiseModel extends Model
         -> join('users', 'users.id','=', 'lectureprofile.user_id')
         -> select('expertise.*','lectureprofile.*','users.*')
         -> get();
-        
+
         return $listlecture;
     }
 }

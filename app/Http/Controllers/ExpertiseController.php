@@ -27,7 +27,7 @@ class ExpertiseController extends Controller
     }
 
     public function viewExpertise(){
-        
+
     }
 
     /**
@@ -77,8 +77,8 @@ class ExpertiseController extends Controller
     public function show($id)
     {
         $result = new ExpertiseModel();
-        
-        $lectureExpertise = $result->indexLecture();
+
+        $lectureExpertise = $result->indexLecture($id);
         return view('expertise.view', compact(['lectureExpertise']));
     }
 
