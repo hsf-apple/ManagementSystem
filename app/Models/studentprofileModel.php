@@ -43,7 +43,10 @@ class studentprofileModel extends Model
         return $this->hasMany('App\Models\LogbookModel','studentId','studentId');
     }
 
-
+    public function svHunting()
+    {
+        return $this->hasMany('App\Models\SvHuntingModel','studentId','studentId');
+    }
 
 
     public function updateStudent($data, $id)//inventory item

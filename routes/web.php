@@ -83,3 +83,5 @@ Route::resource('/Approval', ApprovalController::class);
 
 //proposal
 Route::resource('/SvHunting', SvHuntingController::class);
+Route::get('/AddProposal/{id}', [SvHuntingController::class, 'addProposal'])->name('addProposal');
+Route::get('/MySupervisor', [SvHuntingController::class, 'mySupervisor'])->name('mySupervisor');

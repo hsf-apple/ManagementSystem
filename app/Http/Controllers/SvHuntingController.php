@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SVHuntingModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 
 class SvHuntingController extends Controller
@@ -28,11 +29,13 @@ class SvHuntingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function addProposal($lectureId)
     {
         $result = new SVHuntingModel();
 
         $studentInfo = $result->studentInfo();
+
+        Session::put('lectureId', $lectureId);
 
         return view('SvHunting.addProposal',compact(['studentInfo']));
     }
@@ -53,7 +56,13 @@ class SvHuntingController extends Controller
 
         return redirect('SvHunting');
     }
+    public function mySupervisor(){
+        $result = new SVHuntingModel();
 
+        $listProposal = $result->mySupervisor();
+
+       return view('SvHunting.MySupervisor',compact(['listProposal']));
+    }
     /**
      * Display the specified resource.
      *
@@ -85,7 +94,7 @@ class SvHuntingController extends Controller
 
         $valueProposal = $result->changeProposal($data);
 
-        return view('SvHunting.edit',compact(['valuetitle']));
+        return view('SvHunting.edit',compact(['valueProposal']));
     }
 
     /**
@@ -118,9 +127,9 @@ class SvHuntingController extends Controller
 
         $data = $id;
 
-        $result->deleteTitle($data);
+        $result->deleteProposal($data);
 
 
-        return redirect('SvHunting');
+        return redirect('MySupervisor');
     }
 }
