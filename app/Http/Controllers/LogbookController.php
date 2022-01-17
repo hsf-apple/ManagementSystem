@@ -7,11 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\LogbookModel;
 class LogbookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $result = new LogbookModel();
@@ -82,9 +78,14 @@ class LogbookController extends Controller
         return redirect('logbook');
     }
 
-
-    public function destroy($id)
+    public function indexlecture()
     {
-        //
+        $result = new LogbookModel();
+
+        $listlogbooklecture = $result->logbookstudent();
+
+      return view('logbook.logbookstudent',compact(['listlogbooklecture']));
     }
+
+
 }

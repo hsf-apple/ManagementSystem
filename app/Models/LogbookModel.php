@@ -122,4 +122,19 @@ class LogbookModel extends Model
          $postupdate->update($data->all());
      }
 
+
+
+      //index lecture dasboard
+      public function logbookstudent()
+      {
+        $getsession = session()->get('userprimarykey');
+
+        $user = new lectureprofileModel();
+
+        $user = $user::where('user_id',$getsession)->firstOrFail();
+
+        $titlelist = LogbookModel::Select()->where('lectureID',$user->user_id)->with('fkStudent')->get();
+
+        return $titlelist;
+      }
 }
