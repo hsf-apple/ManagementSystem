@@ -34,15 +34,28 @@ class SVHuntingModel extends Model
     }
 
     public function lectureList(){
-        $listLecture = DB::table('proposal')
-        -> join('expertise', 'expertise.lectureId','=', 'lectureprofile.lectureId')
-        -> join('lectureprofile', 'lectureprofile.lectureId','=', 'proposal.lectureId')
+        $listLecture = DB::table('lectureprofile')
         -> join('users', 'users.id','=', 'lectureprofile.user_id')
-        -> join('users', 'users.id','=', 'lectureprofile.user_id')
-        -> select('proposal.*','expertise.*','lectureprofile.*','users.*')
+        -> select('lectureprofile.*','users.*')
         -> get();
         
         return $listLecture;
+    }
+
+    public function studentInfo(){
+        $getsession = session()->get('userprimarykey');
+
+        $user = new studentprofileModel();
+
+        $user = $user::where('user_id',$getsession)->firstOrFail();
+        
+        $studentInfo = DB::table('studentprofile')
+        -> join('users', 'users.id','=', 'studentprofile.user_id')
+        -> where('studentprofile.studentId', $user->studentId)
+        -> select('studentprofile.*','users.*')
+        -> get();
+        
+        return $studentInfo;
     }
 
     public function viewProposal(){

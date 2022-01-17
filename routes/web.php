@@ -8,6 +8,7 @@ use App\Http\Controllers\LectureController;
 use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SvHuntingController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,6 +53,7 @@ Route::get('/listApprovetLecture', [inventoryusageController::class, 'listApprov
 
 
 Route::resource('/expertise', ExpertiseController::class);
+Route::get('/SvHunting/expertise/{id}', [ExpertiseController::class, 'view'])->name('SvHuntingExpertise');
 
 Route::get('/expertiseEdit', function () {
     return view('expertise.edit');
@@ -79,4 +81,5 @@ Route::resource('/LectureProfile', LectureController::class);
 //approval
 Route::resource('/Approval', ApprovalController::class);
 
-
+//approval
+Route::resource('/SvHunting', SvHuntingController::class);
