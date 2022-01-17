@@ -37,10 +37,20 @@
                                 <td>letak no</td>
                                 <td>{{Auth::user()->studentprofileFK->studentName}}</td>
 
+
+                                @if($aa11 == null)
+                                   <td></td>
+                                @else
                                 <td>{{$aa11->fkLecture->lectureName}}</td>
+                                @endif
+
+
 
                                 <td>{{$logbooklist->meetingDate}}</td>
 
+                                @if($aa11 == null)
+                                 <td></td>
+                                @else
                                 <td>
                                     <button type="button" onclick="window.location='{{route('logbook.show',$logbooklist->id)}}'" class="btn btn-primary">view</button>
 
@@ -48,7 +58,12 @@
 
                                     <button type="button" onclick="window.location='{{route('logbook.edit',$logbooklist->id)}}'" class="btn btn-info">edit</button>
 
-                            </td>
+                                </td>
+                                @endif
+
+
+
+
 
                             </tr>
 

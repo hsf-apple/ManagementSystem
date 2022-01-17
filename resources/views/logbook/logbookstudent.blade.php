@@ -17,11 +17,6 @@
                         @endif
                         {{-- {{Auth::user()->userID}} --}}
 
-                        <div class="d-flex justify-content-between">
-                            <button type="button" onclick="window.location='{{route('logbook.create')}}'" class="btn btn-primary">Generate logbook</button>
-                        </div>
-
-
                         <br><br>
                         <table class="table" id="tableId">
                             <tr>
@@ -35,20 +30,17 @@
                             @foreach ($listlogbooklecture as $logbooklist)
                             <tr>
                                 <td>letak no</td>
-                                {{-- <td>{{Auth::user()->studentprofileFK->studentName}}</td> --}}
-
-                                <td>{{$logbooklist->lectureName}}</td>
-
+                                <td>{{Auth::user()->profileFK->lectureName}}</td>
+                                <td>{{$logbooklist->fkStudent->studentName}}</td>
                                 <td>{{$logbooklist->meetingDate}}</td>
 
-                                <td>
-                                    <button type="button" onclick="window.location='{{route('logbook.show',$logbooklist->id)}}'" class="btn btn-primary">view</button>
-
-                                    <br><br>
-
-                                    <button type="button" onclick="window.location='{{route('logbook.edit',$logbooklist->id)}}'" class="btn btn-info">edit</button>
-
-                            </td>
+                                @if($logbooklist->logbookStatus == true)
+                                <td></td>
+                               @else
+                               <td>
+                                <button type="button" onclick="window.location='{{route('verifylogbook',$logbooklist->id)}}'" class="btn btn-info">view</button>
+                               </td>
+                               @endif
 
                             </tr>
 

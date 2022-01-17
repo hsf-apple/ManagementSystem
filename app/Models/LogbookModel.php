@@ -43,7 +43,7 @@ class LogbookModel extends Model
 
         $user = $user::where('user_id',$getsession)->firstOrFail();
 
-        $titlelist = LogbookModel::Select()->where('studentId',$user->user_id)->with('fkLecture')->get();
+        $titlelist = LogbookModel::Select()->where('studentId',$user->studentId)->with('fkLecture')->get();
 
         return $titlelist;
      }
@@ -59,7 +59,7 @@ class LogbookModel extends Model
 
         $user = $user::where('user_id',$getsession)->firstOrFail();
 
-        $checksvforFKinsert = ApprovalModel::where('studentId',$user->user_id)->with('fkLecture')->first();
+        $checksvforFKinsert = ApprovalModel::where('studentId',$user->studentId)->with('fkLecture')->first();
 
         return $checksvforFKinsert;
      }
@@ -74,10 +74,21 @@ class LogbookModel extends Model
 
         $user = $user::where('user_id',$getsession)->firstOrFail();
 
-        $checksv1 = ApprovalModel::Select()->where('studentId',$user->user_id)->with('fkLecture')->get();
+        $checksv1 = ApprovalModel::Select()->where('studentId',$user->studentId)->with('fkLecture')->get();
 
         return $checksv1;
      }
+
+     public function checklecturedataindashboard($value)
+     {
+
+        $resultmatricID = User::where('id',$value)->get();
+
+
+        return $resultmatricID;
+     }
+
+
 
            //store
     public function store($data)
@@ -97,17 +108,23 @@ class LogbookModel extends Model
 
         $saveinfunctionstudent = new LogbookModel($addlogbookdata);
 
-        $saveinfunctionstudent->lectureId = $checksvforFKinsert->fkLecture->lectureId;
+        $saveinfunctionstudent->logbookStatus = FALSE;
+
+        if(!($checksvforFKinsert == null))
+        {
+            $saveinfunctionstudent->lectureId = $checksvforFKinsert->fkLecture->lectureId;
+
+        }
 
         $user->logbook()->save($saveinfunctionstudent);
     }
 
     public function showspecificlogbook($data)
-     {
+    {
         $updatetitle = LogbookModel::findOrFail($data);
 
         return $updatetitle;
-     }
+    }
 
      public function editlogbook($data)
      {
@@ -119,22 +136,53 @@ class LogbookModel extends Model
      public function PUTmethod($data, $dataid)
      {
          $postupdate = LogbookModel::whereid($dataid)->first();
+
+         $result = new LogbookModel();
+         $id = $result->listlogbooktest();
+
+         $postupdate->lectureId = $id->fkLecture->lectureId;
+
+
+
          $postupdate->update($data->all());
      }
 
 
 
       //index lecture dasboard
-      public function logbookstudent()
-      {
+    public function logbookstudent()
+    {
         $getsession = session()->get('userprimarykey');
 
         $user = new lectureprofileModel();
 
         $user = $user::where('user_id',$getsession)->firstOrFail();
 
-        $titlelist = LogbookModel::Select()->where('lectureID',$user->user_id)->with('fkStudent')->get();
+        $titlelist = LogbookModel::Select()->where('lectureId',$user->lectureId)->with('fkStudent')->get();
 
         return $titlelist;
-      }
+    }
+
+    public function verifylogbookmodel($data)
+    {
+       $updatelogbook = LogbookModel::findOrFail($data);
+
+       return $updatelogbook;
+    }
+
+    public function PUTmethodlecture($data, $dataid)
+    {
+        $postupdate = LogbookModel::whereid($dataid)->first();
+
+        if($data->submitbutton == "Verify")
+        {
+            $postupdate->logbookStatus = true;
+            $postupdate->save();
+        }
+
+
+    }
+
+
+
 }

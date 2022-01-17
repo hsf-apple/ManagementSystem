@@ -69,7 +69,9 @@ Route::put('/Book/{id}', [TitleController::class, 'Book'])->name('Book');
 
 //Logbook
 Route::resource('/logbook', LogbookController::class);
-Route::get('/logbook/indexlecture', [LogbookController::class, 'indexlecture'])->name('indexlecture');
+Route::get('/indexlogbooklecture', [LogbookController::class, 'indexlogbooklecture'])->name('indexlogbooklecture');
+Route::get('/verifylogbook/{id}', [LogbookController::class, 'verifylogbook'])->name('verifylogbook');
+Route::put('/comfimationverifylogbook/{id}', [LogbookController::class, 'comfimationverifylogbook'])->name('comfimationverifylogbook');
 
 //lecture
 Route::resource('/LectureProfile', LectureController::class);

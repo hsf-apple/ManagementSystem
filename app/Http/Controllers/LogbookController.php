@@ -35,11 +35,15 @@ class LogbookController extends Controller
 
     public function store(Request $request)
     {
+
+
+
         $result = new LogbookModel();
 
         $data = $request;
 
         $result->store($data);
+
 
         return redirect('logbook');
     }
@@ -78,7 +82,7 @@ class LogbookController extends Controller
         return redirect('logbook');
     }
 
-    public function indexlecture()
+    public function indexlogbooklecture()
     {
         $result = new LogbookModel();
 
@@ -87,5 +91,29 @@ class LogbookController extends Controller
       return view('logbook.logbookstudent',compact(['listlogbooklecture']));
     }
 
+    public function verifylogbook( $id)
+    {
+        $result = new LogbookModel();
+        $data = $id;
+        $editlogbookdata = $result->verifylogbookmodel($data);
+
+        $value = $editlogbookdata->studentId;
+        $checksv = $result->checklecturedataindashboard($value);
+
+        print($editlogbookdata);
+
+        return view('logbook.verifylogbook',compact(['editlogbookdata','checksv']));
+    }
+
+    public function comfimationverifylogbook(Request $request, $id)
+    {
+        $result = new LogbookModel();
+        $data = $request;
+        $dataid = $id;
+
+        $result->PUTmethodlecture($data,$dataid);
+
+        return redirect('indexlogbooklecture');
+    }
 
 }

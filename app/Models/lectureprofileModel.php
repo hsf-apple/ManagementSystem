@@ -21,6 +21,13 @@ class lectureprofileModel extends Model
     public $timestamps = false;
 
 
+    public function fkStudent()
+    {
+        return $this->belongsTo('App\Models\studentprofileModel','studentId','studentId');
+    }
+
+
+
 
     public function inventoryusage()
     {
