@@ -78,7 +78,7 @@ class ExpertiseController extends Controller
     {
         $result = new ExpertiseModel();
 
-        $lectureExpertise = $result->indexLecture($id);
+        $lectureExpertise = $result->indexLecture();
         return view('expertise.view', compact(['lectureExpertise']));
     }
 

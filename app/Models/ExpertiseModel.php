@@ -25,7 +25,7 @@ class ExpertiseModel extends Model
         return $this->belongsTo('App\Models\lectureprofileModel','lectureId','lectureId');
     }
 
-    public function indexLecture($id){
+    public function indexLecture(){
         $getsession = session()->get('userprimarykey');
 
         $user = new lectureprofileModel();
