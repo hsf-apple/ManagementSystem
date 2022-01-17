@@ -30,7 +30,7 @@ class ProposalModel extends Model
         return $this->belongsTo('App\Models\studentprofileModel','studentId','studentId');
     }
 
-    public function fkproposalinApproval()
+    public function fkproposal()
     {
         return $this->hasOne('App\Models\ApprovalModel','proposalID', 'proposalID');
     }

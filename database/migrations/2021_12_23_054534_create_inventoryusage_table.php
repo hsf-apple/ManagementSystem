@@ -13,6 +13,7 @@ class CreateInventoryusageTable extends Migration
      */
     public function up()
     {
+        if(Schema::hasTable('inventoryusage')) return;
         Schema::create('inventoryusage', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('studentId')->nullable();

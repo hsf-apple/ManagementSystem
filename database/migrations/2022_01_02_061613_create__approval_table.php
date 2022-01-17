@@ -13,6 +13,7 @@ class CreateApprovalTable extends Migration
      */
     public function up()
     {
+        if(Schema::hasTable('_approval')) return;
         Schema::create('_approval', function (Blueprint $table) {
             $table->id('approvalID');
             $table->unsignedBigInteger('studentId')->nullable();
@@ -36,5 +37,6 @@ class CreateApprovalTable extends Migration
     public function down()
     {
         Schema::dropIfExists('_approval');
+
     }
 }

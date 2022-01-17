@@ -21,14 +21,6 @@ class lectureprofileModel extends Model
     public $timestamps = false;
 
 
-    public function fkStudent()
-    {
-        return $this->belongsTo('App\Models\studentprofileModel','studentId','studentId');
-    }
-
-
-
-
     public function inventoryusage()
     {
         return $this->hasMany('App\Models\inventoryUsage','lectureId','lectureId');
@@ -50,7 +42,7 @@ class lectureprofileModel extends Model
 
     public function userid()
     {
-        return $this->belongsTo('App\Models\User','user_id','id');
+        return $this->belongsTo('App\Models\User','id','user_id');
     }
 
      //index

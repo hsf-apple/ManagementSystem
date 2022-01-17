@@ -13,7 +13,10 @@ class CreateLectureprofileTable extends Migration
      */
     public function up()
     {
+
+        if(Schema::hasTable('lectureprofile')) return;
         Schema::create('lectureprofile', function (Blueprint $table) {
+
             $table->id('lectureId');
             $table->integer('user_id')->unsigned()->nullable()->index();
             $table->string('lectureName');
@@ -34,5 +37,9 @@ class CreateLectureprofileTable extends Migration
     public function down()
     {
         Schema::dropIfExists('lectureprofile');
+
+        // Schema::table('lectureprofile', function (Blueprint $table) {
+        //     $table->dropForeign(['user_id']);
+        // });
     }
 }

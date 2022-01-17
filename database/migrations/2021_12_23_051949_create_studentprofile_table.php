@@ -34,6 +34,9 @@ class CreateStudentprofileTable extends Migration
      */
     public function down()
     {
+        Schema::table('studentprofile', function (Blueprint $table) {
+            $table->dropForeign('user_id');
+        });
         Schema::dropIfExists('studentprofile');
     }
 }

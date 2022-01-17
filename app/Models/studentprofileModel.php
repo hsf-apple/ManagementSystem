@@ -25,7 +25,7 @@ class studentprofileModel extends Model
 
     public function fkUser()
     {
-        return $this->belongsTo('App\Models\User','user_id', 'id');
+        return $this->belongsTo('App\Models\User','id', 'user_id');
     }
 
     public function inventoryusage()
