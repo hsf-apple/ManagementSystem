@@ -27,20 +27,20 @@ class TitleModel extends Model
     }
 
 
-      //index
-      public function indextitle()
-      {
+    //index
+    public function indextitle()
+    {
 
-              $getsession = session()->get('userprimarykey');
+        $getsession = session()->get('userprimarykey');
 
-              $user = new lectureprofileModel();
+        $user = new lectureprofileModel();
 
-              $user = $user::where('user_id',$getsession)->firstOrFail();
+        $user = $user::where('user_id',$getsession)->firstOrFail();
 
-              $titlelist = TitleModel::Select()->where('lectureId',$user->lectureId)->get();
+        $titlelist = TitleModel::Select()->where('lectureId',$user->lectureId)->get();
 
-              return $titlelist;
-      }
+        return $titlelist;
+    }
 
        //index
        public function studenttitle()

@@ -14,7 +14,7 @@ class CreateApprovalTable extends Migration
     public function up()
     {
         Schema::create('_approval', function (Blueprint $table) {
-            $table->id();
+            $table->id('approvalID');
             $table->unsignedBigInteger('studentId')->nullable();
             $table->unsignedBigInteger('lectureId')->nullable();
             $table->unsignedBigInteger('prososalID')->nullable();
@@ -22,13 +22,10 @@ class CreateApprovalTable extends Migration
             $table->string('status');
             $table->string('reasons');
 
-
-
             //foreign key
             $table->foreign('studentId')->references('studentId')->on('studentprofile');
             $table->foreign('lectureId')->references('lectureId')->on('lectureprofile');
             $table->foreign('prososalID')->references('prososalID')->on('proposal');
-
         });
     }
 

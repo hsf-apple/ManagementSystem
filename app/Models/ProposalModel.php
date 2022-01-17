@@ -30,6 +30,11 @@ class ProposalModel extends Model
         return $this->belongsTo('App\Models\studentprofileModel','studentId','studentId');
     }
 
+    public function fkproposalinApproval()
+    {
+        return $this->hasOne('App\Models\ApprovalModel','prososalID', 'prososalID');
+    }
+
 
     public function listlecture()
     {

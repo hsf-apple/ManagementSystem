@@ -20,8 +20,13 @@ class ApprovalModel extends Model
         'actPlan'
     ];
 
-    protected $guarded = ['studentId', 'lectureId'];
+    protected $guarded = ['studentId', 'lectureId','prososalID'];
     public $timestamps = false;
+
+    public function fkproposal()
+    {
+        return $this->belongsTo('App\Models\ProposalModel','prososalID', 'prososalID');
+    }
 
     public function fkStudent()
     {
