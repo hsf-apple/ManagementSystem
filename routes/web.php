@@ -81,5 +81,5 @@ Route::resource('/LectureProfile', LectureController::class);
 //approval
 Route::resource('/Approval', ApprovalController::class);
 
-//approval
+//proposal
 Route::resource('/SvHunting', SvHuntingController::class);
