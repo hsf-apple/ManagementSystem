@@ -13,15 +13,17 @@ class ApprovalModel extends Model
 
     protected $fillable= [
        'status',
-        'reasons'
+        'reasons',
+        'proposalID',
+        'studentId',
     ];
 
-    protected $guarded = ['studentId', 'lectureId','prososalID'];
+    protected $guarded = [ 'lectureId',];
     public $timestamps = false;
 
     public function fkproposal()
     {
-        return $this->belongsTo('App\Models\ProposalModel','prososalID', 'prososalID');
+        return $this->belongsTo('App\Models\ProposalModel','proposalID', 'proposalID');
     }
 
     public function fkStudent()
@@ -51,9 +53,11 @@ class ApprovalModel extends Model
 
     public function showspecificproposaldata($data)
     {
-        $updatetitle = ProposalModel::findOrFail($data);
+        $updatetitle = ProposalModel::where('proposalID',$data)->first();
 
-        return $updatetitle;
+        $matricID = $updatetitle->studentprofile->user_id;
+
+        return $matricID;
     }
     public function findmatricId($data)
     {
@@ -65,12 +69,18 @@ class ApprovalModel extends Model
     //store
     public function store($data)
     {
+        $getsession = session()->get('userprimarykey');
 
-        $addtitlefkvalue = $data->all();
+        $user = new lectureprofileModel();
 
-        $addtitlefinal = new ApprovalModel($addtitlefkvalue);
+        $user = $user::where('user_id',$getsession)->firstOrFail();
 
-        $addtitlefinal->save();
+        $datastore = $data->all();
+
+        $object = new ApprovalModel($datastore,['studentId'=> $data->studentId, 'prososalID'=> $data->prososalID],);
+
+        $user->Approval()->save($object);
+
     }
 
 }

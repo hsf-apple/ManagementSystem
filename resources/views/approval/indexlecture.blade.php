@@ -29,8 +29,8 @@
                             <tr>
                                 <td>letak no</td>
                                 <td>{{$dataproposal->studentprofile->studentName}}</td>
-                                {{-- <td>{{$dataproposal->studentId}}</td> --}}
-                                <td>  <button type="button" onclick="window.location='{{route('viewApproval',$dataproposal->id)}}'" class="btn btn-primary">View</button></td>
+                                {{-- <td>{{$dataproposal->proposalID}}</td> --}}
+                                <td>  <button type="button" onclick="window.location='{{route('viewApproval',$dataproposal->proposalID)}}'" class="btn btn-primary">View</button></td>
                             </tr>
 
                             @endforeach

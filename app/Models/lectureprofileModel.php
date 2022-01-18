@@ -50,6 +50,12 @@ class lectureprofileModel extends Model
         return $this->hasMany('App\Models\SvHuntingModel','studentId','studentId');
     }
 
+    public function Approval()
+    {
+        return $this->hasMany('App\Models\ApprovalModel','lectureId','lectureId');
+    }
+
+
      //index
 
      public function changetitle1($data)

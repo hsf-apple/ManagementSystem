@@ -17,12 +17,16 @@
                         @endif
                         {{-- {{Auth::user()->userID}} --}}
                        <button type="button" onclick="window.location='{{route('Approval.index')}}'" class="btn btn-primary">Back</button>
-                            <br><br>
+                       <br><br>
+                        @if ()
+
+                        @elseif ()
+
                         <form method="post" action="{{ route('Approval.store') }}">
-                            @csrf
-                            <input name="studentId" type="hidden" value="{{$specificproposaldata->studentId}}">
-                            <input name="lectureId" type="hidden" value="{{$specificproposaldata->lectureId}}">
-                            <input name="proposalID" type="hidden" value=" {{$specificproposaldata->id}}">
+                            {{-- @csrf --}}
+                            {{ csrf_field() }}
+                            <input name="studentId"  id="studentId" type="hidden" value="{{$specificproposaldata->studentId}}">
+                            <input name="proposalID" id="proposalID" type="hidden" value=" {{$specificproposaldata->proposalID}}">
 
                             <label for="project_description" class="form-label">Name:</label>
                             <label >{{$specificproposaldata->studentprofile->studentName}}</label><br>
@@ -44,6 +48,10 @@
 
                             <input type="submit" name="submit" value="Submit Request" class="btn btn-success">
                         </form>
+                        @endif
+
+
+
                     </div>
                 </div>
             </div>
