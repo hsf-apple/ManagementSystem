@@ -51,14 +51,35 @@ class ApprovalModel extends Model
         return $titlelist;
     }
 
+
+    public function checkforeignkey($data)
+    {
+        $checkdataapproval = ApprovalModel::get();
+        foreach($data as $checkforeigndata)
+        {
+            foreach($checkdataapproval as $checkvalue)
+            {
+                if($checkvalue->proposalID == null)
+                {
+
+                }
+                elseif($checkvalue->proposalID == $checkforeigndata->proposalID)
+                {
+                    $updatetitle[] = ApprovalModel::where('proposalID',$checkforeigndata->proposalID)->first();
+                }
+            }
+        }
+        return $updatetitle;
+    }
+
+
     public function showspecificproposaldata($data)
     {
         $updatetitle = ProposalModel::where('proposalID',$data)->first();
 
-        $matricID = $updatetitle->studentprofile->user_id;
-
-        return $matricID;
+        return $updatetitle;
     }
+
     public function findmatricId($data)
     {
         $updatetitle = User::findOrFail($data);

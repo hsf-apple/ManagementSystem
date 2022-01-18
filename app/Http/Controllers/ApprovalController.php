@@ -12,9 +12,12 @@ class ApprovalController extends Controller
     {
         $result = new  ApprovalModel();
         $listproposal = $result->indexapprovalstatus();
+        $getforeignkey =$result->checkforeignkey($listproposal);
+
+       // print($getforeignkey[1]);
         print($listproposal);
 
-        return view('approval.indexlecture',compact(['listproposal']));
+        return view('approval.indexlecture',compact(['listproposal','getforeignkey']));
     }
 
     public function viewApproval($id)
@@ -25,12 +28,6 @@ class ApprovalController extends Controller
         $findMatricId = $result->findmatricId($matricID);
 
         return view('approval.addstatusapproval',compact(['specificproposaldata','findMatricId']));
-    }
-
-
-    public function create()
-    {
-        //
     }
 
     public function store(Request $request)
@@ -46,23 +43,12 @@ class ApprovalController extends Controller
         return redirect('Approval');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //

@@ -18,9 +18,9 @@
                         {{-- {{Auth::user()->userID}} --}}
                        <button type="button" onclick="window.location='{{route('Approval.index')}}'" class="btn btn-primary">Back</button>
                        <br><br>
-                        @if ()
+                        {{-- @if ()
 
-                        @elseif ()
+                        @elseif () --}}
 
                         <form method="post" action="{{ route('Approval.store') }}">
                             {{-- @csrf --}}
@@ -48,7 +48,7 @@
 
                             <input type="submit" name="submit" value="Submit Request" class="btn btn-success">
                         </form>
-                        @endif
+                        {{-- @endif --}}
 
 
 
