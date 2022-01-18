@@ -17,7 +17,7 @@
                         @endif
                         {{-- {{Auth::user()->userID}} --}}
                         @foreach ($showProposal as $showProposal)
-                            <form method="post" action="{{ route('SvHunting.edit') }}">
+                            <form method="post" action="">
                                 @csrf
                                 {{-- <label for='expertiseName'>Enter Expertise Name: </label>
                                 <input type="text" name="expertiseName" class="form-control"><br/>
@@ -76,7 +76,8 @@
                                         <td><label for='project_domain'>Project Domain:  </label></td>
                                         <td>{{$showProposal->project_domain}}</td>
                                     </tr>
-                                    <input type="submit" name="submit" value="Edit" class="btn btn-success">
+                                </table>
+                                    <button type="button" onclick="window.location='{{route('SvHunting.edit',$showProposal->id)}}'" class="btn btn-primary">Edit</button>
                             </form>
                         @endforeach 
                             
