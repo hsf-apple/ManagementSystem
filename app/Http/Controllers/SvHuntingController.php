@@ -107,7 +107,7 @@ class SvHuntingController extends Controller
 
         $result->updateProposal($data,$dataid);
 
-        return redirect('SvHunting');
+        return redirect('MySupervisor');
     }
 
     /**

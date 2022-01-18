@@ -76,11 +76,11 @@
                                         <td><label for='project_domain'>Project Domain:  </label></td>
                                         <td>
                                             <select class="form-control" name="project_domain">
-                                                <option value="CS">(CS) Computer Science</option>
-                                                <option value="SN">Computer Systems & Networking</option>
-                                                <option value="SE">Software Engineering</option>
-                                                <option value="GMM">Graphics & Multimedia</option>
-                                                <option value="CY">Cyber Security</option>
+                                                <option value="(CS) Computer Science">(CS) Computer Science</option>
+                                                <option value="(SN) Computer Systems & Networking">(SN) Computer Systems & Networking</option>
+                                                <option value="(SE) Software Engineering">(SE) Software Engineering</option>
+                                                <option value="(GMM) Graphics & Multimedia">(GMM) Graphics & Multimedia</option>
+                                                <option value="(CY) Cyber Security">(CY) Cyber Security</option>
                                             </select>
                                         </td>
                                     </tr>

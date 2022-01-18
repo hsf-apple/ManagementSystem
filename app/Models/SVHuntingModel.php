@@ -94,8 +94,8 @@ class SVHuntingModel extends Model
 
         $listProposal = DB::table('proposal')
         -> join('lectureprofile', 'lectureprofile.lectureId','=', 'proposal.lectureId')
-        -> join('users', 'users.id','=', 'lectureprofile.user_id')
         -> join('studentprofile', 'studentprofile.studentId','=', 'proposal.studentId')
+        -> join('users', 'users.id','=', 'studentprofile.user_id')
         -> where('proposal.id',$id)
         -> select('lectureprofile.*','users.*','proposal.*','studentprofile.*')
         -> get();
@@ -120,8 +120,22 @@ class SVHuntingModel extends Model
         return $listProposal;
     }
 
-    public function updateProposal(){
+    public function changeProposal($data)
+    {
+        $updateProposal = DB::table('proposal')
+        -> join('lectureprofile', 'lectureprofile.lectureId','=', 'proposal.lectureId')
+        -> join('studentprofile', 'studentprofile.studentId','=', 'proposal.studentId')
+        -> join('users', 'users.id','=', 'studentprofile.user_id')
+        -> where('proposal.id',$data)
+        -> select('lectureprofile.*','users.*','proposal.*','studentprofile.*')
+        -> get();
 
+        return $updateProposal;
+    }
+
+    public function updateProposal($data, $dataid){
+        $postupdate = SVHuntingModel::whereid($dataid)->first();
+        $postupdate->update($data->all());
     }
 
     public function deleteProposal($data){

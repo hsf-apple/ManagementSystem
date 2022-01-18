@@ -16,19 +16,10 @@
                             </div>
                         @endif
                         {{-- {{Auth::user()->userID}} --}}
-                        @foreach ($studentInfo as $studentInfo)
-                            <form method="post" action="{{ route('SvHunting.store') }}">
+                        @foreach ($valueProposal as $valueProposal)
+                            <form method="post" action="{{ route('SvHunting.update', $valueProposal->id) }}">
                                 @csrf
-                                {{-- <label for='expertiseName'>Enter Expertise Name: </label>
-                                <input type="text" name="expertiseName" class="form-control"><br/>
-
-                                <label for='expertiseLevel'>Select Expertise Level: </label>
-                                <select class="form-control" name="expertiseLevel">
-                                    <option value="Low">Low</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="High">High</option>
-                                    <option value="Very High">Very High</option>
-                                </select> --}}
+                                <input type="hidden" name="_method" value="PUT">
                                 <table class="table">
                                     <tr>
                                         <th colspan="2">Section A: Student Details</th>
@@ -36,39 +27,39 @@
                                     </tr>
                                     <tr>
                                         <td><label for='studentName'>Name:  </label></td>
-                                        <td>{{$studentInfo->studentName}}</td>
+                                        <td>{{$valueProposal->studentName}}</td>
                                         <td><label for='project_title'>Project Title:  </label></td>
-                                        <td><input type="text" name="project_title" class="form-control"></td>
+                                        <td><input type="text" name="project_title" class="form-control" value="{{$valueProposal->project_title}}"></td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td><label for='userID'>Matrix ID:  </label></td>
-                                        <td>{{$studentInfo->userID}}</td>
+                                        <td>{{$valueProposal->userID}}</td>
                                         <td><label for='objective'>Objective:  </label></td>
-                                        <td ><textarea id="objective" name="objective" rows="3"></textarea></td>
+                                        <td ><textarea id="objective" name="objective" rows="3">{{$valueProposal->objective}}</textarea></td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td></td>
                                         <td></td>
                                         <td><label for='project_scope'>Project Scope:  </label></td>
-                                        <td><textarea id="project_scope" name="project_scope" rows="3"></textarea></td>
+                                        <td><textarea id="project_scope" name="project_scope" rows="3">{{$valueProposal->project_scope}}</textarea></td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td></td>
                                         <td></td>
                                         <td><label for='problem_background'>Problem Background:  </label></td>
-                                        <td><textarea id="problem_background" name="problem_background" rows="3"></textarea></td>
+                                        <td><textarea id="problem_background" name="problem_background" rows="3">{{$valueProposal->problem_background}}</textarea></td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td></td>
                                         <td></td>
                                         <td><label for='software'>Software:  </label></td>
-                                        <td><textarea id="software" name="software" rows="3"></textarea></td>
+                                        <td><textarea id="software" name="software" rows="3">{{$valueProposal->software}}</textarea></td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td></td>
                                         <td></td>
                                         <td><label for='tools'>Tools:  </label></td>
-                                        <td><textarea id="tools" name="tools" rows="3"></textarea></td>
+                                        <td><textarea id="tools" name="tools" rows="3">{{$valueProposal->tools}}</textarea></td>
                                     </tr>
                                     <tr rowspan="3">
                                         <td></td>
@@ -76,16 +67,17 @@
                                         <td><label for='project_domain'>Project Domain:  </label></td>
                                         <td>
                                             <select class="form-control" name="project_domain">
-                                                <option value="CS">(CS) Computer Science</option>
-                                                <option value="SN">Computer Systems & Networking</option>
-                                                <option value="SE">Software Engineering</option>
-                                                <option value="GMM">Graphics & Multimedia</option>
-                                                <option value="CY">Cyber Security</option>
+                                                <option value="{{$valueProposal->project_domain}}" selected>Current domain: {{$valueProposal->project_domain}}</option>
+                                                <option value="(CS) Computer Science">(CS) Computer Science</option>
+                                                <option value="(SN) Computer Systems & Networking">(SN) Computer Systems & Networking</option>
+                                                <option value="(SE) Software Engineering">(SE) Software Engineering</option>
+                                                <option value="(GMM) Graphics & Multimedia">(GMM) Graphics & Multimedia</option>
+                                                <option value="(CY) Cyber Security">(CY) Cyber Security</option>
                                             </select>
                                         </td>
                                     </tr>
                                 </table>
-                                <input type="submit" name="submit" value="Submit" class="btn btn-success">
+                                <input type="submit" name="submit" value="Update" class="btn btn-success">
                             </form>
                         @endforeach 
                             
