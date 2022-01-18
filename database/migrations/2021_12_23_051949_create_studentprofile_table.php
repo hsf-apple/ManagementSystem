@@ -22,7 +22,8 @@ class CreateStudentprofileTable extends Migration
             $table->string('student_Skill');
             $table->string('skill_Level');
 
-            //foreign key
+        });
+        Schema::table('studentprofile', function($table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -35,7 +36,8 @@ class CreateStudentprofileTable extends Migration
     public function down()
     {
         Schema::table('studentprofile', function (Blueprint $table) {
-            $table->dropForeign('user_id');
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
         });
         Schema::dropIfExists('studentprofile');
     }

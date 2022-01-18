@@ -18,7 +18,7 @@ class CreateLectureprofileTable extends Migration
         Schema::create('lectureprofile', function (Blueprint $table) {
 
             $table->id('lectureId');
-            $table->integer('user_id')->unsigned()->nullable()->index();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->string('lectureName');
             $table->string('lecturePhone');
             $table->string('lecture_Skill');
@@ -36,10 +36,10 @@ class CreateLectureprofileTable extends Migration
      */
     public function down()
     {
+        Schema::table('lectureprofile', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        });
         Schema::dropIfExists('lectureprofile');
-
-        // Schema::table('lectureprofile', function (Blueprint $table) {
-        //     $table->dropForeign(['user_id']);
-        // });
     }
 }
