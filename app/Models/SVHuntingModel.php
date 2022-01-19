@@ -96,7 +96,7 @@ class SVHuntingModel extends Model
         -> join('lectureprofile', 'lectureprofile.lectureId','=', 'proposal.lectureId')
         -> join('studentprofile', 'studentprofile.studentId','=', 'proposal.studentId')
         -> join('users', 'users.id','=', 'studentprofile.user_id')
-        -> where('proposal.id',$id)
+        -> where('proposal.proposalID',$id)
         -> select('lectureprofile.*','users.*','proposal.*','studentprofile.*')
         -> get();
         
@@ -126,7 +126,7 @@ class SVHuntingModel extends Model
         -> join('lectureprofile', 'lectureprofile.lectureId','=', 'proposal.lectureId')
         -> join('studentprofile', 'studentprofile.studentId','=', 'proposal.studentId')
         -> join('users', 'users.id','=', 'studentprofile.user_id')
-        -> where('proposal.id',$data)
+        -> where('proposal.proposalID',$data)
         -> select('lectureprofile.*','users.*','proposal.*','studentprofile.*')
         -> get();
 
