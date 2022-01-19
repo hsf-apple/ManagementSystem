@@ -14,7 +14,7 @@ class CreateExpertiseTable extends Migration
     public function up()
     {
         Schema::create('expertise', function (Blueprint $table) {
-            $table->id();
+            $table->id('expertiseID');
             $table->unsignedBigInteger('lectureId')->nullable()->index();
             $table->string('expertiseName');
             $table->string('expertiseLevel');

@@ -17,8 +17,14 @@ class ExpertiseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
+        $result = new ExpertiseModel();
+
+        $lectureExpertise = $result->indexLecture();
+        return view('expertise.edit', compact(['lectureExpertise']));
+    }
+
+    public function listLecture(){
         $result = new ExpertiseModel();
 
         $listlecture = $result->listlecture();
@@ -72,12 +78,16 @@ class ExpertiseController extends Controller
      * @param  \App\Models\ExpertiseModel  $expertiseModel
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
         $result = new ExpertiseModel();
+        $info = new ExpertiseModel();
 
-        $lectureExpertise = $result->indexLecture();
-        return view('expertise.view', compact(['lectureExpertise']));
+        $lectureExpertise = $result->indexView($id);
+
+        $lectureInfo = $info-> lectureInfo($id);
+
+        return view('expertise.viewLecture', compact(['lectureExpertise', 'lectureInfo']));
     }
 
     /**
@@ -98,9 +108,15 @@ class ExpertiseController extends Controller
      * @param  \App\Models\ExpertiseModel  $expertiseModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ExpertiseModel $expertiseModel)
+    public function update(Request $request, $id)
     {
-        //
+        $result = new ExpertiseModel();
+        $data = $request;
+        $dataid = $id;
+
+        $result->updateExpertise($data,$dataid);
+
+        return redirect('expertise');
     }
 
     /**
@@ -111,8 +127,12 @@ class ExpertiseController extends Controller
      */
     public function destroy($expertiseID)
     {
-        // $delete = ExpertiseModel::findorFail($id);
-        // $delete->delete();
+        $result = new ExpertiseModel();
+
+        $data = $expertiseID;
+
+        $result->deleteExpertise($data);
+
 
         return redirect('expertise');
     }

@@ -82,7 +82,6 @@
                                     @break
                                 @default
                             @endswitch
-                            <button type="button" id="lectureId" name='lectureId' onclick="window.location='{{route('addProposal',$expertise->lectureId)}}'" class="btn btn-primary">Select</button>
                             </div>
                             <br>
                         @endforeach
