@@ -14,11 +14,13 @@ class StudentController extends Controller
      * @param  \App\Models\studentprofileModel  $studentprofileModel
      * @return \Illuminate\Http\Response
      */
-    public function edit(studentprofileModel $studentprofileModel)
+    public function edit($id)
     {
+        $result = new studentprofileModel();
 
+        $updateprofile = $result->editstudentprofile($id);
 
-        //view('student');
+        return view('lecture.edit',compact(['updateprofile']));
 
     }
 
