@@ -17,15 +17,15 @@
                         @endif
                         {{-- {{Auth::user()->userID}} --}}
                         @foreach ($updateprofile as $data)
-                        <form method="post" action="{{ route('LectureProfile.update',$data->studentId) }}">
+                        <form method="post" action="{{ route('StudentProfile.update',$data->studentId) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
 
-                            <label for="lectureName" class="form-label">Student Name:</label>
-                            <input type="text" name="lectureName" id="lectureName" class="form-control" value="{{$data->lectureName}}"><br/>
+                            <label for="studentName" class="form-label">Student Name:</label>
+                            <input type="text" name="studentName" id="studentName" class="form-control" value="{{$data->studentName}}"><br/>
 
-                            <label for="lecture_Skill" class="form-label">Student Skill:</label>
-                            <input type="text" name="lecture_Skill" id="lecture_Skill" class="form-control" value="{{$data->lecture_Skill}}"><br/>
+                            <label for="student_Skill" class="form-label">Student Skill:</label>
+                            <input type="text" name="student_Skill" id="student_Skill" class="form-control" value="{{$data->student_Skill}}"><br/>
 
 
                             @if ($data->skill_Level == 'Advance')

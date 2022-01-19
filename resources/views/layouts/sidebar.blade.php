@@ -1,7 +1,7 @@
 <!-- The sidebar -->
 <div class="sidebar">
     <a class="active" href="{{url('/studentdashboard')}}">Home</a>
-    <a href="#news">News</a>
+    <a href="{{route('StudentProfile.edit',Auth::user()->id  )}}">profile</a>
     <a href="{{route('listtitle')}}">Title list</a>
     <a href="{{route('SvHunting.index')}}">search supervisor</a>
     <a href="{{route('mySupervisor')}}">My Supervisor</a>
