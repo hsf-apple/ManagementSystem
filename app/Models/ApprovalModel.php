@@ -116,6 +116,11 @@ class ApprovalModel extends Model
         $postupdate->update($data->all());
     }
 
+    public function viewstatus($id)
+    {
+        $postupdate = ApprovalModel::where('proposalID',$id)->first();
+        return $postupdate;
+    }
 
 
 }

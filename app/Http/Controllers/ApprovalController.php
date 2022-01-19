@@ -12,7 +12,12 @@ class ApprovalController extends Controller
     {
         $result = new  ApprovalModel();
         $listproposal = $result->indexapprovalstatus();
-        $getforeignkey =$result->checkforeignkey($listproposal);
+        $getforeignkey= $result->checkforeignkey($listproposal);
+
+        // foreach($getforeignkey as $aaa)
+        // {
+        //     print($aaa );
+        // }
 
          return view('approval.indexlecture',compact(['listproposal','getforeignkey']));
     }
@@ -39,7 +44,15 @@ class ApprovalController extends Controller
 
     public function show($id)
     {
-        //
+        $result = new ApprovalModel();
+
+        $data = $id;
+
+        $studentstatus = $result->viewstatus($data);
+
+      //  print($studentstatus[1]);
+
+      // return view('approval.studentview',compact(['studentstatus']));
     }
 
 
