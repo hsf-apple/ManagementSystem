@@ -12,6 +12,8 @@ class studentprofileModel extends Model
 
     protected $table = 'studentprofile';
 
+    protected $primaryKey = 'studentId';
+
     protected $fillable= [
         'studentName',
         'studentPhone',
@@ -101,6 +103,20 @@ class studentprofileModel extends Model
             break;
         }
 
+    }
+
+
+     //index
+     public function editstudentprofile($data)
+    {
+        $updateprofile = studentprofileModel::Select()->where('user_id',$data)->get();
+        return $updateprofile;
+    }
+
+    public function updatestudentprofile($data, $id)
+    {
+        $updateprofile = studentprofileModel::where('studentId',$id)->first();
+        $updateprofile->update($data->all());
     }
 
 }

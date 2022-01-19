@@ -8,30 +8,24 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\studentprofileModel  $studentprofileModel
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(studentprofileModel $studentprofileModel)
+    public function edit($id)
     {
+        $result = new studentprofileModel();
+        $updateprofile = $result->editstudentprofile($id);
 
-
-        //view('student');
+        return view('Student.edit',compact(['updateprofile']));
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\studentprofileModel  $studentprofileModel
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, studentprofileModel $studentprofileModel)
+
+    public function update(Request $request, $id)
     {
-        //
+        $result = new studentprofileModel();
+        $data = $request;
+        $dataid = $id;
+        $result->updatestudentprofile($data,$dataid);
+
+        return redirect('studentdashboard');
     }
 
 }
