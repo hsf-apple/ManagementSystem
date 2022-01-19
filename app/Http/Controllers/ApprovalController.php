@@ -14,10 +14,7 @@ class ApprovalController extends Controller
         $listproposal = $result->indexapprovalstatus();
         $getforeignkey =$result->checkforeignkey($listproposal);
 
-       // print($getforeignkey[1]);
-        print($listproposal);
-
-        return view('approval.indexlecture',compact(['listproposal','getforeignkey']));
+         return view('approval.indexlecture',compact(['listproposal','getforeignkey']));
     }
 
     public function viewApproval($id)
@@ -34,11 +31,8 @@ class ApprovalController extends Controller
     {
 
         $result = new ApprovalModel();
-
         $data = $request;
-
         $result->store($data);
-
 
         return redirect('Approval');
     }
@@ -51,29 +45,23 @@ class ApprovalController extends Controller
 
     public function edit($id)
     {
-        //
+        $result = new ApprovalModel();
+        $getvalueform = $result->getdataform($id);
+        $matricID = $getvalueform->fkStudent->user_id;
+        $findMatricId = $result->findmatricId($matricID);
+
+        return view('approval.updateapproval',compact(['getvalueform','findMatricId']));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $result = new ApprovalModel();
+        $data = $request;
+        $dataid = $id;
+        $result->updateoperation($data,$dataid);
+
+        return redirect('Approval');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

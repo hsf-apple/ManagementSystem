@@ -27,7 +27,7 @@
                             </tr>
                             @foreach ($listproposal as $dataproposal)
                                 @foreach ($getforeignkey as $data)
-                                    @if ($data->proposalID == null)
+                                    @if ($data == null)
                                         <tr>
                                             <td>letak no</td>
                                             <td>{{$dataproposal->studentprofile->studentName}}</td>
@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>letak no</td>
                                         <td>{{$dataproposal->studentprofile->studentName}}</td>
-                                        <td>  <button type="button" onclick="window.location='{{route('Approval.edit',$dataproposal->proposalID)}}'" class="btn btn-primary">Edit</button></td>
+                                        <td>  <button type="button" onclick="window.location='{{route('Approval.edit',$data->approvalID)}}'" class="btn btn-primary">Edit</button></td>
                                     </tr>
                                     @endif
                                 @endforeach

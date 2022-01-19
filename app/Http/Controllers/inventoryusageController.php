@@ -101,9 +101,4 @@ class inventoryusageController extends Controller
         // return redirect('listRequestLecture')->with('message', 'The success message!');
         return redirect('listRequestLecture');
     }
-
-
-
-
-
 }

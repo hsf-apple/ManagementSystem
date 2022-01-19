@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use function PHPUnit\Framework\isEmpty;
+
 class LogbookModel extends Model
 {
     use HasFactory;
@@ -158,10 +160,30 @@ class LogbookModel extends Model
 
         $user = $user::where('user_id',$getsession)->firstOrFail();
 
-        $titlelist = LogbookModel::Select()->where('lectureId',$user->lectureId)->with('fkStudent')->get();
+        $datalogbook = LogbookModel::Select()->get();
 
-        return $titlelist;
+        return $datalogbook;
+
     }
+
+       //index lecture dasboard
+       public function checkapprovestudent()
+       {
+           $getsession = session()->get('userprimarykey');
+
+           $user = new lectureprofileModel();
+
+           $user = $user::where('user_id',$getsession)->firstOrFail();
+
+           $approvestudent = ApprovalModel::Select()->where('lectureId',$user->lectureId)->with('fkStudent')->get();
+
+            return $approvestudent;
+       }
+
+
+
+
+
 
     public function verifylogbookmodel($data)
     {
@@ -172,12 +194,26 @@ class LogbookModel extends Model
 
     public function PUTmethodlecture($data, $dataid)
     {
+        $getsession = session()->get('userprimarykey');
+
+        $user = new lectureprofileModel();
+
+        $user = $user::where('user_id',$getsession)->firstOrFail();
+
         $postupdate = LogbookModel::whereid($dataid)->first();
 
         if($data->submitbutton == "Verify")
         {
             $postupdate->logbookStatus = true;
-            $postupdate->save();
+
+            if($postupdate->lectureId == $user->lectureId)
+            {
+                $postupdate->save();
+            }
+            else
+            {
+                $user->logbook()->save($postupdate);
+            }
         }
 
 

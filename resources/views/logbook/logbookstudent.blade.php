@@ -15,7 +15,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        {{-- {{Auth::user()->userID}} --}}
+                        {{-- {{Auth::user()->id}} --}}
 
                         <br><br>
                         <table class="table" id="tableId">
@@ -28,22 +28,42 @@
 
                             </tr>
                             @foreach ($listlogbooklecture as $logbooklist)
-                            <tr>
-                                <td>letak no</td>
-                                <td>{{Auth::user()->profileFK->lectureName}}</td>
-                                <td>{{$logbooklist->fkStudent->studentName}}</td>
-                                <td>{{$logbooklist->meetingDate}}</td>
+                                @if ($logbooklist->lectureId == Auth::user()->id)
+                                    <tr>
+                                        <td scope="row">{{$loop->iteration}}</td>
+                                        <td>{{Auth::user()->profileFK->lectureName}}</td>
+                                        <td>{{$logbooklist->fkStudent->studentName}}</td>
+                                        <td>{{$logbooklist->meetingDate}}</td>
 
-                                @if($logbooklist->logbookStatus == true)
-                                <td></td>
-                               @else
-                               <td>
-                                <button type="button" onclick="window.location='{{route('verifylogbook',$logbooklist->id)}}'" class="btn btn-info">view</button>
-                               </td>
-                               @endif
+                                        @if($logbooklist->logbookStatus == true)
+                                        <td></td>
+                                    @else
+                                    <td>
+                                        <button type="button" onclick="window.location='{{route('verifylogbook',$logbooklist->id)}}'" class="btn btn-info">view</button>
+                                    </td>
+                                    @endif
+                                    </tr>
+                                @else
+                                    @foreach ($checkapprovestudent as $checkstudentapprovelist)
+                                    @if ($checkstudentapprovelist->lectureId == Auth::user()->profileFK->lectureId)
 
-                            </tr>
+                                        <tr>
+                                            <td>letak no</td>
+                                            <td>{{Auth::user()->profileFK->lectureName}}</td>
+                                            <td>{{$logbooklist->fkStudent->studentName}}</td>
+                                            <td>{{$logbooklist->meetingDate}}</td>
 
+                                            @if($logbooklist->logbookStatus == true)
+                                            <td></td>
+                                        @else
+                                        <td>
+                                            <button type="button" onclick="window.location='{{route('verifylogbook',$logbooklist->id)}}'" class="btn btn-info">view</button>
+                                        </td>
+                                        @endif
+                                        </tr>
+                                    @endif
+                                    @endforeach
+                                @endif
                             @endforeach
                         </table>
 

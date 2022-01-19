@@ -15,31 +15,17 @@ class LectureController extends Controller
 
         $updateprofile = $result->changetitle1($id);
 
-       // print($valuetitle);
-
         return view('lecture.edit',compact(['updateprofile']));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $result = new lectureprofileModel();
+        $data = $request;
+        $dataid = $id;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $result->updatelectureprofile($data,$dataid);
+
+        return redirect('lecturedashboard');
     }
 }

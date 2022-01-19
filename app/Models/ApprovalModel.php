@@ -10,7 +10,7 @@ class ApprovalModel extends Model
     use HasFactory;
 
     protected $table = '_approval';
-
+    protected $primaryKey = 'approvalID';
     protected $fillable= [
        'status',
         'reasons',
@@ -54,6 +54,8 @@ class ApprovalModel extends Model
 
     public function checkforeignkey($data)
     {
+        $updatetitle = array();
+
         $checkdataapproval = ApprovalModel::get();
         foreach($data as $checkforeigndata)
         {
@@ -61,7 +63,6 @@ class ApprovalModel extends Model
             {
                 if($checkvalue->proposalID == null)
                 {
-
                 }
                 elseif($checkvalue->proposalID == $checkforeigndata->proposalID)
                 {
@@ -103,5 +104,18 @@ class ApprovalModel extends Model
         $user->Approval()->save($object);
 
     }
+    public function getdataform($data)
+    {
+        $updatetitle = ApprovalModel::where('approvalID',$data)->first();
+        return $updatetitle;
+    }
+
+    public function updateoperation($data, $dataid)
+    {
+        $postupdate = ApprovalModel::where('approvalID',$dataid)->first();
+        $postupdate->update($data->all());
+    }
+
+
 
 }

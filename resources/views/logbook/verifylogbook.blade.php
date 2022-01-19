@@ -32,7 +32,7 @@
 
 
                             <label>Supervisor Name:</label>
-                            <label >{{$editlogbookdata->fkLecture->lectureName}}</label> <br>
+                            <label >{{Auth::user()->profileFK->lectureName}}</label> <br>
 
 
 

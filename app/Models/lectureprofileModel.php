@@ -10,6 +10,8 @@ class lectureprofileModel extends Model
     protected $table = 'lectureprofile';
     use HasFactory;
 
+    protected $primaryKey = 'lectureId';
+
     protected $fillable= [
         'lectureName',
         'lecturePhone',
@@ -57,12 +59,17 @@ class lectureprofileModel extends Model
 
 
      //index
-
      public function changetitle1($data)
     {
         $updateprofile = lectureprofileModel::Select()->where('user_id',$data)->get();
 
         return $updateprofile;
+    }
+
+    public function updatelectureprofile($data, $id)
+    {
+        $updateprofile = lectureprofileModel::where('lectureId',$id)->first();
+        $updateprofile->update($data->all());
     }
 
 

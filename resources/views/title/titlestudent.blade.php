@@ -30,7 +30,7 @@
                             </tr>
                             @foreach ($avalabletitle as $titlelist1)
                             <tr>
-                                <td>letak no</td>
+                                <td scope="row">{{$loop->iteration}}</td>
                                 <td>{{$titlelist1->field}}</td>
                                 <td>{{$titlelist1->project_title}}</td>
                                 <td>{{$titlelist1->lectureprofile->lectureName}}</td>

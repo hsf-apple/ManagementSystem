@@ -18,9 +18,10 @@
                         {{-- {{Auth::user()->userID}} --}}
                         <button type="button" onclick="window.location='{{route('listtitle')}}'" class="btn btn-primary">Back</button>
 
-                        <h1>{{$showtitlespecifc->field}}</h1>
-
-
+                        <br><br>
+                        <h5>Field:{{$showtitlespecifc->field}}</h5>
+                        <h5>Title:{{$showtitlespecifc->project_title}}</h5>
+                        <h5>Project Decription:{{$showtitlespecifc->project_description}}</h5> <br>
 
                     </div>
                 </div>

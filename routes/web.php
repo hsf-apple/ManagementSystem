@@ -65,7 +65,6 @@ Route::resource('/proposal', ProposalController::class);
 //title
 Route::resource('/title', TitleController::class);
 Route::get('/listtitle', [TitleController::class, 'listtitlestudent'])->name('listtitle');
-
 Route::put('/Book/{id}', [TitleController::class, 'Book'])->name('Book');
 
 
@@ -81,6 +80,7 @@ Route::resource('/LectureProfile', LectureController::class);
 //approval
 Route::resource('/Approval', ApprovalController::class);
 Route::get('/viewApproval/{id}', [ApprovalController::class, 'viewApproval'])->name('viewApproval');
+
 //proposal
 Route::resource('/SvHunting', SvHuntingController::class);
 Route::get('/AddProposal/{id}', [SvHuntingController::class, 'addProposal'])->name('addProposal');
