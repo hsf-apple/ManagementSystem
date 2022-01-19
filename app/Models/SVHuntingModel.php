@@ -12,6 +12,7 @@ class SVHuntingModel extends Model
 {
     use HasFactory;
     protected $table = 'proposal';
+    protected $primaryKey = 'proposalID';
     protected $fillable= [
         'project_title',
         'objective',
@@ -134,12 +135,13 @@ class SVHuntingModel extends Model
     }
 
     public function updateProposal($data, $dataid){
-        $postupdate = SVHuntingModel::whereid($dataid)->first();
+        $postupdate = SVHuntingModel::where('proposalID',$dataid)->first();
+
         $postupdate->update($data->all());
     }
 
     public function deleteProposal($data){
-        $deleterequest = SVHuntingModel::findOrFail($data);
+        $deleterequest = SVHuntingModel::Select()->where('proposalID',$data);
         $deleterequest->delete();
     }
 }

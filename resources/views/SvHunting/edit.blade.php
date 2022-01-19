@@ -17,7 +17,7 @@
                         @endif
                         {{-- {{Auth::user()->userID}} --}}
                         @foreach ($valueProposal as $valueProposal)
-                            <form method="post" action="{{ route('SvHunting.update', $valueProposal->id) }}">
+                            <form method="post" action="{{ route('SvHunting.update', $valueProposal->proposalID) }}">
                                 @csrf
                                 <input type="hidden" name="_method" value="PUT">
                                 <table class="table">

@@ -35,11 +35,11 @@
 
                                 <td><button type="button" onclick="window.location='{{ route('Approval.show',$proposalTitle->id) }}'" class="btn btn-primary">View Status</button></td>
                                 <td>
-                                    <button type="button" onclick="window.location='{{route('ProposalView', $proposalTitle->id)}}'" class="btn btn-primary">View</button>
+                                    <button type="button" onclick="window.location='{{route('ProposalView', $proposalTitle->proposalID)}}'" class="btn btn-primary">View</button>
 
                                     <br><br>
 
-                                    <form action="{{ route('SvHunting.destroy',$proposalTitle->id) }}" onsubmit="return confirm('Are you sure want to cancel?');" method="post">
+                                    <form action="{{ route('SvHunting.destroy',$proposalTitle->proposalID) }}" onsubmit="return confirm('Are you sure want to cancel?');" method="post">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
 
