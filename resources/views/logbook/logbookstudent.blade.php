@@ -48,7 +48,7 @@
                                     @if ($checkstudentapprovelist->lectureId == Auth::user()->profileFK->lectureId)
 
                                         <tr>
-                                            <td>letak no</td>
+                                            <td scope="row">{{$loop->iteration}}</td>
                                             <td>{{Auth::user()->profileFK->lectureName}}</td>
                                             <td>{{$logbooklist->fkStudent->studentName}}</td>
                                             <td>{{$logbooklist->meetingDate}}</td>

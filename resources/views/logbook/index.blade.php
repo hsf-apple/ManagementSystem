@@ -34,7 +34,7 @@
                             </tr>
                             @foreach ($listlogbookstudent as $logbooklist)
                             <tr>
-                                <td>letak no</td>
+                                <td scope="row">{{$loop->iteration}}</td>
                                 <td>{{Auth::user()->studentprofileFK->studentName}}</td>
 
 

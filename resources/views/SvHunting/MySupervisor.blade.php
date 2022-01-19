@@ -33,7 +33,7 @@
                                 <td>{{$proposalTitle->lectureName}}</td>
                                 <td>{{$proposalTitle->project_title}}</td>
 
-                                <td><button type="button" onclick="window.location='{{ route('Approval.show',$proposalTitle->id) }}'" class="btn btn-primary">View Status</button></td>
+                                <td><button type="button" onclick="window.location='{{ route('Approval.show',$proposalTitle->proposalID) }}'" class="btn btn-primary">View Status</button></td>
                                 <td>
                                     <button type="button" onclick="window.location='{{route('ProposalView', $proposalTitle->proposalID)}}'" class="btn btn-primary">View</button>
 

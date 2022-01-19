@@ -49,10 +49,9 @@ class ApprovalController extends Controller
         $data = $id;
 
         $studentstatus = $result->viewstatus($data);
+        $studentstatuspending = $result->pendingstatus($data);
 
-      //  print($studentstatus[1]);
-
-      // return view('approval.studentview',compact(['studentstatus']));
+       return view('approval.studentview',compact(['studentstatus','studentstatuspending']));
     }
 
 

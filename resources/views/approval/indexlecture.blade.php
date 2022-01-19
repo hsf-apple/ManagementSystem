@@ -26,13 +26,13 @@
 
                             </tr>
                             @foreach ($listproposal as $dataproposal)
-                            @if ($getforeignkey == null)
-                            <tr>
-                                <td>letak no</td>
-                                <td>{{$dataproposal->studentprofile->studentName}}</td>
-                                <td>  <button type="button" onclick="window.location='{{route('viewApproval',$dataproposal->proposalID)}}'" class="btn btn-primary">Add</button></td>
-                            </tr>
-                            @endif
+                                @if ($getforeignkey == null)
+                                <tr>
+                                    <td>letak no</td>
+                                    <td>{{$dataproposal->studentprofile->studentName}}</td>
+                                    <td>  <button type="button" onclick="window.location='{{route('viewApproval',$dataproposal->proposalID)}}'" class="btn btn-primary">Add</button></td>
+                                </tr>
+                                @endif
                             @foreach ($getforeignkey as $data)
                                     @if($data->proposalID ==$dataproposal->proposalID)
                                     <tr>

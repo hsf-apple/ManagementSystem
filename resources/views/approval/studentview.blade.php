@@ -19,16 +19,40 @@
                         <button type="button" onclick="window.location='{{route('mySupervisor')}}'" class="btn btn-primary">Back</button>
 
                         <br><br>
-                        {{-- <h5>Field:{{$studentstatus->proposalID}}</h5> --}}
+                        @if ($studentstatus == null)
+                           <label>Name:</label>
+                           <label >{{$studentstatuspending->studentprofile->studentName}}</label> <br>
 
-                        {{-- {{$studentstatus->status}} --}}
+                           <label>Matric Id:</label>
+                           <label >{{Auth::user()->userID}}</label> <br>
 
-                        {{-- {{Auth::user()->}} --}}
+                           <label>Lecture Name:</label>
+                           <label >{{$studentstatuspending->lectureprofile->lectureName}}</label> <br>
 
+                           <label>Status:</label>
+                           <label >Pending</label> <br>
 
+                           <label>Reasons:</label>
+                           <label >Waiting for Approval/Rejecting request</label> <br>
 
-                        {{-- <h5>Title:{{$studentstatus->project_title}}</h5>
-                        <h5>Project Decription:{{$studentstatus->project_description}}</h5> <br> --}}
+                        @elseif ($studentstatus->proposalID == $studentstatuspending->proposalID)
+
+                            <label>Name:</label>
+                            <label >{{$studentstatuspending->studentprofile->studentName}}</label> <br>
+
+                            <label>Matric Id:</label>
+                            <label >{{Auth::user()->userID}}</label> <br>
+
+                            <label>Lecture Name:</label>
+                            <label >{{$studentstatuspending->lectureprofile->lectureName}}</label> <br>
+
+                            <label>Status:</label>
+                            <label >{{$studentstatus->status}}</label> <br>
+
+                            <label>Reasons:</label>
+                            <label >{{$studentstatus->reasons}}</label> <br>
+
+                        @endif
 
                     </div>
                 </div>

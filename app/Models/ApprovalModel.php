@@ -121,6 +121,11 @@ class ApprovalModel extends Model
         $postupdate = ApprovalModel::where('proposalID',$id)->first();
         return $postupdate;
     }
+    public function pendingstatus($id)
+    {
+        $postupdate = ProposalModel::where('proposalID',$id)->first();
+        return $postupdate;
+    }
 
 
 }
