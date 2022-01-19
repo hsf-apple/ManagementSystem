@@ -77,7 +77,7 @@
                                         <td>{{$showProposal->project_domain}}</td>
                                     </tr>
                                 </table>
-                                    <button type="button" onclick="window.location='{{route('SvHunting.edit',$showProposal->id)}}'" class="btn btn-primary">Edit</button>
+                                    <button type="button" onclick="window.location='{{route('SvHunting.edit',$showProposal->proposalID)}}'" class="btn btn-primary">Edit</button>
                             </form>
                         @endforeach 
                             
