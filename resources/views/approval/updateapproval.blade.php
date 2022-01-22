@@ -31,6 +31,29 @@
                             <label for="project_description" class="form-label">Lecture Name:</label>
                             <label >{{$getvalueform->fkLecture->lectureName}}</label><br>
 
+
+                            <label for="project_description" class="form-label">Project title:</label>
+                            <label >{{$getvalueform->fkproposal->project_title}}</label><br>
+
+                            <label for="project_description" class="form-label">Objective:</label>
+                            <label >{{$getvalueform->fkproposal->objective}}</label><br>
+
+                            <label for="project_description" class="form-label">Project Scope:</label>
+                            <label >{{$getvalueform->fkproposal->project_scope}}</label><br>
+
+                            <label for="project_description" class="form-label">Problem Background:</label>
+                            <label >{{$getvalueform->fkproposal->problem_background}}</label><br>
+
+                            <label for="project_description" class="form-label">Software:</label>
+                            <label >{{$getvalueform->fkproposal->software}}</label><br>
+
+                            <label for="project_description" class="form-label">Tool:</label>
+                            <label >{{$getvalueform->fkproposal->tools}}</label><br>
+
+                            <label for="project_description" class="form-label">Project Domain:</label>
+                            <label >{{$getvalueform->fkproposal->project_domain}}</label><br>
+
+
                             <label for="status">Proposal Status:</label>
                             <select class="form-control" name="status" value="{{$getvalueform->status}}">
                                 <option value="Accepted">Accepted</option>
