@@ -10,6 +10,8 @@ class lectureprofileModel extends Model
     protected $table = 'lectureprofile';
     use HasFactory;
 
+    protected $primaryKey = 'lectureId';
+
     protected $fillable= [
         'lectureName',
         'lecturePhone',
@@ -19,7 +21,6 @@ class lectureprofileModel extends Model
 
     protected $guard = ['user_id'];
     public $timestamps = false;
-
 
 
     public function inventoryusage()
@@ -35,5 +36,42 @@ class lectureprofileModel extends Model
     {
         return $this->hasMany('App\Models\TitleModel','lectureId','lectureId');
     }
+
+    public function logbook()
+    {
+        return $this->hasMany('App\Models\LogbookModel','lectureId','lectureId' );
+    }
+
+    public function userid()
+    {
+        return $this->belongsTo('App\Models\User','id','user_id');
+    }
+
+    public function svHunting()
+    {
+        return $this->hasMany('App\Models\SvHuntingModel','studentId','studentId');
+    }
+
+    public function Approval()
+    {
+        return $this->hasMany('App\Models\ApprovalModel','lectureId','lectureId');
+    }
+
+
+     //index
+     public function changetitle1($data)
+    {
+        $updateprofile = lectureprofileModel::Select()->where('user_id',$data)->get();
+
+        return $updateprofile;
+    }
+
+    public function updatelectureprofile($data, $id)
+    {
+        $updateprofile = lectureprofileModel::where('lectureId',$id)->first();
+        $updateprofile->update($data->all());
+    }
+
+
 
 }

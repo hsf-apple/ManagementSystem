@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Request Inventory</div>
+                    <div class="card-header">PSM Title List</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -33,7 +33,7 @@
                             </tr>
                             @foreach ($titlelist as $titlelist1)
                             <tr>
-                                <td>letak no</td>
+                                <td scope="row">{{$loop->iteration}}</td>
                                 <td>{{$titlelist1->field}}</td>
                                 <td>{{$titlelist1->project_title}}</td>
                                 <td>

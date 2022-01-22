@@ -36,15 +36,16 @@ class TitleController extends Controller
 
     public function show($id)
     {
-        //
+        $result = new TitleModel();
+
+        $data = $id;
+
+        $showtitlespecifc = $result->viewtitle($data);
+
+       return view('title.showtitlespecific',compact(['showtitlespecifc']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $result = new TitleModel();
@@ -85,9 +86,21 @@ class TitleController extends Controller
     {
         $result = new TitleModel();
 
-        $titlelist = $result->indextitle();
+        $avalabletitle = $result->studenttitle();
 
-       return view('title.indextitle',compact(['titlelist']));
+       return view('title.titlestudent',compact(['avalabletitle']));
     }
+
+    public function Book(Request $request, $id)
+    {
+        $result = new TitleModel();
+        $data = $request;
+        $dataid = $id;
+        $result->Book($data,$dataid);
+        return redirect('listtitle');
+    }
+
+
+
 
 }

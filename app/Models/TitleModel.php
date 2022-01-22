@@ -21,30 +21,35 @@ class TitleModel extends Model
     {
         return $this->belongsTo('App\Models\lectureprofileModel','lectureId','lectureId');
     }
+    public function studentprofile()
+    {
+        return $this->belongsTo('App\Models\studentprofileModel','studentId','studentId');
+    }
 
 
-      //index
-      public function indextitle()
-      {
+    //index
+    public function indextitle()
+    {
 
-              $getsession = session()->get('userprimarykey');
+        $getsession = session()->get('userprimarykey');
 
-              $user = new lectureprofileModel();
+        $user = new lectureprofileModel();
 
-              $user = $user::where('user_id',$getsession)->firstOrFail();
+        $user = $user::where('user_id',$getsession)->firstOrFail();
 
-              $titlelist = TitleModel::Select()->where('lectureId',$user->lectureId)->get();
+        $titlelist = TitleModel::Select()->where('lectureId',$user->lectureId)->get();
 
-              return $titlelist;
-      }
+        return $titlelist;
+    }
 
        //index
        public function studenttitle()
        {
 
-        $inventoryItem = TitleModel::Select()->where('studentId','like',null)->get();
 
-        return $inventoryItem;
+        $studenttitle = TitleModel::Select()->orWhereNull('studentId')->with('lectureprofile')->get();
+
+        return $studenttitle;
        }
 
 
@@ -53,17 +58,17 @@ class TitleModel extends Model
     public function store($data)
     {
 
-                $getsession = $data->session()->get('userprimarykey');
+        $getsession = $data->session()->get('userprimarykey');
 
-                $user = new lectureprofileModel();
+        $user = new lectureprofileModel();
 
-                $user = $user::where('user_id',$getsession)->firstOrFail();
+        $user = $user::where('user_id',$getsession)->firstOrFail();
 
-                $addtitlefkvalue = $data->all();
+        $addtitlefkvalue = $data->all();
 
-                $addtitlefinal = new TitleModel($addtitlefkvalue);
+        $addtitlefinal = new TitleModel($addtitlefkvalue);
 
-                $user->title()->save($addtitlefinal);
+        $user->title()->save($addtitlefinal);
     }
 
     public function changetitle($data)
@@ -86,7 +91,25 @@ class TitleModel extends Model
          $deleterequest->delete();
      }
 
+     public function Book($data, $dataid)
+     {
+        $postupdate = TitleModel::whereid($dataid)->first();
 
+       $getsession = $data->session()->get('userprimarykey');
 
+       $user = new studentprofileModel();
+
+       $user = $user::where('user_id',$getsession)->firstOrFail();
+
+       $user->title()->save($postupdate);
+
+     }
+
+     public function viewtitle($data)
+     {
+         $updatetitle = TitleModel::findOrFail($data);
+
+         return $updatetitle;
+     }
 
 }

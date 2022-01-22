@@ -22,10 +22,10 @@
                             @csrf
                             <label for="field">Select a field:</label>
                             <select class="form-control" name="field">
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
+                                <option value="BCS">BCS</option>
+                                <option value="saab">BCN</option>
+                                <option value="mercedes">BCG</option>
+                                <option value="audi">DCS</option>
                             </select><br/>
 
                             <label for="project_title" class="form-label">project title:</label>
