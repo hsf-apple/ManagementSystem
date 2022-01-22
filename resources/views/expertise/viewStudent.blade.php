@@ -16,7 +16,7 @@
                             </div>
                         @endif
                         {{-- {{Auth::user()->userID}} --}}
-                        @foreach ($lectureInfo as $info)
+                        @foreach ($lectureExpertise as $info)
                             @csrf
                             <div class="form-group">
                                 <div class="form-group row">
@@ -25,29 +25,29 @@
 
                                     <label for="lectureID" class="col-sm-2 col-form-label"> ID: </label>
                                     <label for="lectureId" class="col-sm-4 col-form-label">{{$info->userID}}</label>
-                                    
+
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="lectureName" class="col-sm-2 col-form-label"> Email: </label>
                                     <label for="lectureName" class="col-sm-4 col-form-label">{{$info->email}}</label>
-                                    
+
                                     <label for="lectureID" class="col-sm-2 col-form-label"> Phone: </label>
                                     <label for="lectureId" class="col-sm-4 col-form-label">{{$info->lecturePhone}}</label>
-                                    
+
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="lectureName" class="col-sm-2 col-form-label"> Skill: </label>
                                     <label for="lectureName" class="col-sm-4 col-form-label">{{$info->lecture_Skill}}</label>
-                                    
+
                                     <label for="lectureID" class="col-sm-2 col-form-label"> Skill Level: </label>
                                     <label for="lectureId" class="col-sm-4 col-form-label">{{$info->skill_Level}}</label>
-                                    
+
                                 </div>
                             </div>
                         @endforeach
-                        
+
                     </div>
                 </div>
                 <br>
