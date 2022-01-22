@@ -55,8 +55,6 @@
                             <label for="project_description" class="form-label">project_domain:</label>
                             <label >{{$specificproposaldata->project_domain}}</label><br>
 
-
-
                             <label for="status">Proposal Status:</label>
                             <select class="form-control" name="status">
                                 <option value="Accepted">Accepted</option>
