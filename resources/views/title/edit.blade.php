@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Add request</div>
+                    <div class="card-header">Add Request</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -30,10 +30,10 @@
                                 <option value="audi">DCS</option>
                             </select><br/>
 
-                            <label for="project_title" class="form-label">project title:</label>
+                            <label for="project_title" class="form-label">Project Title:</label>
                             <input type="text" name="project_title" id="project_title" class="form-control" value="{{$valuetitle->project_title}}"><br/>
 
-                            <label for="project_description" class="form-label">project description:</label>
+                            <label for="project_description" class="form-label">Project Description:</label>
                             <input type="text" name="project_description" id="project_description" class="form-control" value="{{$valuetitle->project_description}}"><br/>
 
                             <input type="submit" name="submit" value="Update Title" class="btn btn-success">
