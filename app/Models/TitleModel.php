@@ -26,7 +26,6 @@ class TitleModel extends Model
         return $this->belongsTo('App\Models\studentprofileModel','studentId','studentId');
     }
 
-
     //index
     public function indextitle()
     {
@@ -45,8 +44,6 @@ class TitleModel extends Model
        //index
        public function studenttitle()
        {
-
-
         $studenttitle = TitleModel::Select()->orWhereNull('studentId')->with('lectureprofile')->get();
 
         return $studenttitle;
