@@ -23,6 +23,7 @@
                             <input type="hidden" name="_method" value="PUT">
 
                             <label for="field">Select a field:</label>
+
                             <select class="form-control" name="field">
                                 <option value="BCS">BCS</option>
                                 <option value="BCN">BCN</option>

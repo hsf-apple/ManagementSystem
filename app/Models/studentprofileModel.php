@@ -16,7 +16,7 @@ class studentprofileModel extends Model
 
     protected $fillable= [
         'studentName',
-        'studentPhone',
+        // 'studentPhone',
         'student_Skill',
         'skill_Level',
     ];

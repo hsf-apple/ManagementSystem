@@ -55,7 +55,7 @@ class TitleModel extends Model
     public function store($data)
     {
 
-        $getsession = $data->session()->get('userprimarykey');
+        $getsession = session()->get('userprimarykey');
 
         $user = new lectureprofileModel();
 
@@ -88,11 +88,11 @@ class TitleModel extends Model
          $deleterequest->delete();
      }
 
-     public function Book($data, $dataid)
+     public function Book( $dataid)
      {
         $postupdate = TitleModel::whereid($dataid)->first();
 
-       $getsession = $data->session()->get('userprimarykey');
+       $getsession = session()->get('userprimarykey');
 
        $user = new studentprofileModel();
 
