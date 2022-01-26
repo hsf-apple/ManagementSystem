@@ -175,7 +175,7 @@ class LogbookModel extends Model
 
            $user = $user::where('user_id',$getsession)->firstOrFail();
 
-           $approvestudent = ApprovalModel::Select()->where('lectureId',$user->lectureId)->where('status','like','Accepted')->with('fkStudent')->get();
+           $approvestudent = ApprovalModel::where('lectureId',$user->lectureId)->where('status','like','Accepted')->with('fkStudent')->first();
 
             return $approvestudent;
        }

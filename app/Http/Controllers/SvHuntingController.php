@@ -18,10 +18,6 @@ class SvHuntingController extends Controller
        return view('SvHunting.searchSupervisor',compact(['listlecture']));
     }
 
-    public function expertise($id)
-    {
-        //
-    }
 
 
     /**
@@ -56,6 +52,7 @@ class SvHuntingController extends Controller
 
         return redirect('SvHunting');
     }
+
     public function mySupervisor(){
         $result = new SVHuntingModel();
 
@@ -63,7 +60,7 @@ class SvHuntingController extends Controller
 
        return view('SvHunting.MySupervisor',compact(['listProposal']));
     }
-    
+
     public function view($id)
     {
         $result = new SVHuntingModel();

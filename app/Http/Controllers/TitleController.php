@@ -33,7 +33,7 @@ class TitleController extends Controller
         return redirect('title');
     }
 
-
+    //std show
     public function show($id)
     {
         $result = new TitleModel();
@@ -96,7 +96,7 @@ class TitleController extends Controller
         $result = new TitleModel();
         $data = $request;
         $dataid = $id;
-        $result->Book($data,$dataid);
+        $result->Book($dataid);
         return redirect('listtitle');
     }
 

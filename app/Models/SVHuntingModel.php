@@ -40,11 +40,12 @@ class SVHuntingModel extends Model
     }
 
     public function lectureList(){
+
         $listLecture = DB::table('lectureprofile')
         -> join('users', 'users.id','=', 'lectureprofile.user_id')
         -> select('lectureprofile.*','users.*')
         -> get();
-        
+
         return $listLecture;
     }
 
@@ -54,13 +55,13 @@ class SVHuntingModel extends Model
         $user = new studentprofileModel();
 
         $user = $user::where('user_id',$getsession)->firstOrFail();
-        
+
         $studentInfo = DB::table('studentprofile')
         -> join('users', 'users.id','=', 'studentprofile.user_id')
         -> where('studentprofile.studentId', $user->studentId)
         -> select('studentprofile.*','users.*')
         -> get();
-        
+
         return $studentInfo;
     }
     public function store($data)
@@ -76,7 +77,7 @@ class SVHuntingModel extends Model
         $lecture = new lectureprofileModel();
 
         $lecture = $lecture::where('lectureId',$lectureId)->firstOrFail();
-        
+
         $addProposal = $data->all();
 
         $addProposalFinal = new SVHuntingModel($addProposal);
@@ -100,7 +101,7 @@ class SVHuntingModel extends Model
         -> where('proposal.proposalID',$id)
         -> select('lectureprofile.*','users.*','proposal.*','studentprofile.*')
         -> get();
-        
+
         return $listProposal;
     }
 
@@ -117,7 +118,7 @@ class SVHuntingModel extends Model
         -> where('proposal.studentId',$user->studentId)
         -> select('lectureprofile.*','users.*','proposal.*')
         -> get();
-        
+
         return $listProposal;
     }
 

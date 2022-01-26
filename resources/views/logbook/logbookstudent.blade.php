@@ -44,9 +44,7 @@
                                     @endif
                                     </tr>
                                 @else
-                                    @foreach ($checkapprovestudent as $checkstudentapprovelist)
-                                    @if ($checkstudentapprovelist->lectureId == Auth::user()->profileFK->lectureId)
-
+                                    @if ($checkapprovestudent->lectureId == Auth::user()->profileFK->lectureId)
                                         <tr>
                                             <td scope="row">{{$loop->iteration}}</td>
                                             <td>{{Auth::user()->profileFK->lectureName}}</td>
@@ -62,7 +60,7 @@
                                         @endif
                                         </tr>
                                     @endif
-                                    @endforeach
+
                                 @endif
                             @endforeach
                         </table>
