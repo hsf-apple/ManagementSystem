@@ -110,7 +110,7 @@ class ApprovalModel extends Model
     }
     public function pendingstatus($id)
     {
-        $postupdate = ProposalModel::where('proposalID',$id)->first();
+        $postupdate = SVHuntingModel::where('proposalID',$id)->first();
         return $postupdate;
     }
 
