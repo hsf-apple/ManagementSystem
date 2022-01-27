@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class TitleController extends Controller
 {
 
+    //display lecturer dashboard
     public function index()
     {
         $result = new TitleModel();
@@ -16,7 +17,7 @@ class TitleController extends Controller
        return view('title.indextitle',compact(['titlelist']));
     }
 
-
+    //lecturer add title
     public function create()
     {
         return view('title.addtitle');
@@ -33,7 +34,7 @@ class TitleController extends Controller
         return redirect('title');
     }
 
-    //std show
+    //student show specific title
     public function show($id)
     {
         $result = new TitleModel();
@@ -45,7 +46,7 @@ class TitleController extends Controller
        return view('title.showtitlespecific',compact(['showtitlespecifc']));
     }
 
-
+    //lecturer edit title
     public function edit($id)
     {
         $result = new TitleModel();
@@ -69,7 +70,7 @@ class TitleController extends Controller
         return redirect('title');
     }
 
-
+    //delete title
     public function destroy($id)
     {
         $result = new TitleModel();
@@ -82,6 +83,7 @@ class TitleController extends Controller
         return redirect('title');
     }
 
+    //student display available title
     public function listtitlestudent()
     {
         $result = new TitleModel();
@@ -91,12 +93,13 @@ class TitleController extends Controller
        return view('title.titlestudent',compact(['avalabletitle']));
     }
 
+    //student book title
     public function Book(Request $request, $id)
     {
         $result = new TitleModel();
         $data = $request;
         $dataid = $id;
-        $result->Book($dataid);
+        $result->Book($data,$dataid);
         return redirect('listtitle');
     }
 
