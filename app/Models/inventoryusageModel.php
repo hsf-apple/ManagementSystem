@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use GuzzleHttp\Psr7\Request;
+use App\Models\inventoryitemModel;
+use App\Models\studentprofileModel;
+use App\Models\lectureprofileModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class inventoryUsage extends Model
+class inventoryusageModel extends Model
 {
     use HasFactory;
     protected $table = 'inventoryusage';
@@ -23,7 +25,7 @@ class inventoryUsage extends Model
     //intentoryitem (itemid) is belong to model inventoryitemmodel
     public function inventoryitem()
     {
-        return $this->belongsTo('App\Models\inventoryitemModel','itemId','itemId');
+        return $this->belongsTo(inventoryitemModel::class,'itemId','itemId');
     }
       //studentprofile (studentId) is belong to model studentprofileModel
     public function studentprofile()
@@ -41,7 +43,7 @@ class inventoryUsage extends Model
             //retrive user Primary Key data by using session (get from LoginController)
             $getsession = session()->get('userprimarykey');
 
-            //create object of class model studentprofileModel
+            //create new model instance studentprofileModel
             $user = new studentprofileModel();
 
             //find the first user_id data (foreign key) in db (table: studentprofile)
@@ -50,7 +52,8 @@ class inventoryUsage extends Model
             //get all inventoryUsage primary key for specific user
             //use 'with()' in order to access data from other table by using foreign key (itemId)
             //go to inventoryUsage function inventoryitem()
-            $inventorylist = inventoryUsage::Select()->where('studentId',$user->studentId)->where('status','LIKE','pending')->with('inventoryitem')->get();
+            //->where('status','LIKE','pending')->
+            $inventorylist = inventoryUsageModel::Select()->where('studentId',$user->studentId)->with('inventoryitem')->with('lectureprofile')->get();
 
             return $inventorylist;
     }
@@ -68,45 +71,38 @@ class inventoryUsage extends Model
     //store
     public function store($data)
     {
-        //retrive user Primary Key data by using session (get from LoginController)
-        $getsession = $data->session()->get('userprimarykey');
+                //retrive user Primary Key data by using session (get from LoginController)
+                $getsession = $data->session()->get('userprimarykey');
 
-        //create object of class model studentprofileModel
-        $user = new studentprofileModel();
+                //create new model instance studentprofileModel
+                $user = new studentprofileModel();
 
-        //find the first user_id data (foreign key) in db (table: studentprofile)
-        $user = $user::where('user_id',$getsession)->firstOrFail();
+                //find the first user_id data (foreign key) in db (table: studentprofile)
+                $user = $user::where('user_id',$getsession)->firstOrFail();
 
-        //retieve all input data
-        $inventoryusage = $data->all();
+                //retieve all input data
+                $inventoryusage = $data->all();
 
-        //create object of class model inventoryusage
-        $addinventory = new inventoryUsage($inventoryusage + ['status'=>'pending']);
+                //create object of class model inventoryusage
+                $addinventory = new inventoryUsageModel($inventoryusage + ['status'=>'pending']);
 
-        //save data in function studentprofileModel called inventoryusage()
-        $user->inventoryusage()->save($addinventory);
+                //save data in function studentprofileModel called inventoryusage()
+                $user->inventoryusage()->save($addinventory);
 
     }
 
     //delete
     public function deleteinventory($data)
     {
-        $deleterequest = inventoryUsage::findOrFail($data);
+        $deleterequest = inventoryUsageModel::findOrFail($data);
         $deleterequest->delete();
     }
 
-    //approve list
-    public function studentApprovelist()
-    {
-        $listAllapprove = inventoryUsage::Select()->where('status','like','Approve')->with('studentprofile')->with('lectureprofile')->get();
-
-       return $listAllapprove;
-    }
 
     //display index admin dashboard
     public function listRequestLecture()
     {
-        $listAll = inventoryUsage::Select()->where('status','LIKE','pending')->with('studentprofile')->get();
+        $listAll = inventoryUsageModel::Select()->where('status','LIKE','pending')->with('studentprofile')->get();
 
        return $listAll;
 
@@ -115,7 +111,7 @@ class inventoryUsage extends Model
     //display approve list  for lecture
     public function listApprovetLecture()
     {
-        $listAllApprove = inventoryUsage::Select()->where('status','LIKE','Approve')->with('studentprofile')->get();
+        $listAllApprove = inventoryUsageModel::Select()->where('status','LIKE','Approve')->with('studentprofile')->get();
 
         return $listAllApprove;
 
@@ -124,7 +120,7 @@ class inventoryUsage extends Model
 
     public function updateinventory($data, $dataid)
     {
-        $postupdate = inventoryUsage::whereid($dataid)->first();
+        $postupdate = inventoryUsageModel::whereid($dataid)->first();
 
         //retrive user Primary Key data by using session (get from LoginController)
         $getsession = $data->session()->get('userprimarykey');
@@ -176,4 +172,12 @@ class inventoryUsage extends Model
 
     }
 
+    public function infoRequest($id)
+    {
+        $detailinventory = inventoryUsageModel::where('id',$id)->with('studentprofile')->with('lectureprofile')->with('inventoryitem')->first();
+
+       return $detailinventory;
+    }
 }
+
+
