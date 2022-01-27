@@ -7,5 +7,4 @@
     <a href="{{route('mySupervisor')}}">My Supervisor</a>
     <a href="{{route('inventory.index')}}">Inventory Usage</a>
     <a href="{{route('logbook.index')}}">Logbook</a>
-    <a href="#about">About</a>
 </div>
