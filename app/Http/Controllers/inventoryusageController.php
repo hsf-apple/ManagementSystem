@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\inventoryUsageModel;
+use App\Models\inventoryusageModel;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class inventoryusageController extends Controller
 {
     public function index()
     {
-        $result = new inventoryUsageModel();
+        $result = new inventoryusageModel();
 
         $inventorylist = $result->indexmodel();
 
@@ -21,7 +21,7 @@ class inventoryusageController extends Controller
     public function create()
     {
 
-        $result = new inventoryUsageModel();
+        $result = new inventoryusageModel();
 
         $inventoryItem = $result->create();
 
@@ -31,7 +31,7 @@ class inventoryusageController extends Controller
 
     public function store(Request $request)
     {
-        $result = new inventoryUsageModel();
+        $result = new inventoryusageModel();
 
         $data = $request;
 
@@ -44,7 +44,7 @@ class inventoryusageController extends Controller
     //cancel request
     public function destroy($id)
     {
-        $result = new inventoryUsageModel();
+        $result = new inventoryusageModel();
 
         $data = $id;
 
@@ -58,7 +58,7 @@ class inventoryusageController extends Controller
     //display index admin dashboard
     public function listRequestLecture()
     {
-        $result = new inventoryUsageModel();
+        $result = new inventoryusageModel();
 
         $listAll = $result->listRequestLecture();
 
@@ -68,7 +68,7 @@ class inventoryusageController extends Controller
     //display approve list  for lecture
     public function listApprovetLecture()
     {
-        $result = new inventoryUsageModel();
+        $result = new inventoryusageModel();
 
         $listAllApprove = $result->listApprovetLecture();
 
@@ -79,21 +79,21 @@ class inventoryusageController extends Controller
     //approve / reject
     public function update(Request $request, $id)
     {
-        $result = new inventoryUsageModel();
+        $result = new inventoryusageModel();
 
         $data = $request;
         $dataid = $id;
 
         $result->updateinventory($data,$dataid);
 
-        // return redirect('listRequestLecture')->with('message', 'The success message!');
+
         return redirect('listRequestLecture');
     }
 
     //student
     public function show($id)
     {
-        $result = new inventoryUsageModel();
+        $result = new inventoryusageModel();
 
         $detailinventory = $result->infoRequest($id);
 

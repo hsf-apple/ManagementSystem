@@ -77,6 +77,7 @@ class LogbookController extends Controller
         $listlogbooklecture = $result->logbookstudent();
         $checkapprovestudent = $result->checkapprovestudent();
 
+
         return view('logbook.logbookstudent',compact(['listlogbooklecture','checkapprovestudent']));
     }
 

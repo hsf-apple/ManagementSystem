@@ -60,8 +60,8 @@ class LogbookModel extends Model
         $user = new studentprofileModel();
 
         $user = $user::where('user_id',$getsession)->firstOrFail();
-
-        $checksvforFKinsert = ApprovalModel::where('studentId',$user->studentId)->with('fkLecture')->first();
+        //check if lecture approve
+        $checksvforFKinsert = ApprovalModel::where('studentId',$user->studentId)->where('status','like','Accepted')->with('fkLecture')->first();
 
         return $checksvforFKinsert;
      }
@@ -110,7 +110,7 @@ class LogbookModel extends Model
 
         $saveinfunctionstudent = new LogbookModel($addlogbookdata);
 
-        $saveinfunctionstudent->logbookStatus = FALSE;
+        $saveinfunctionstudent->verify = FALSE;
 
         if(!($checksvforFKinsert == null))
         {
@@ -204,7 +204,7 @@ class LogbookModel extends Model
 
         if($data->submitbutton == "Verify")
         {
-            $postupdate->logbookStatus = true;
+            $postupdate->verify = true;
 
             if($postupdate->lectureId == $user->lectureId)
             {
