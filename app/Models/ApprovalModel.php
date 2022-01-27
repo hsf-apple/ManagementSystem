@@ -23,7 +23,7 @@ class ApprovalModel extends Model
 
     public function fkproposal()
     {
-        return $this->belongsTo('App\Models\ProposalModel','proposalID', 'proposalID');
+        return $this->belongsTo('App\Models\SVHuntingModel','proposalID', 'proposalID');
     }
 
     public function fkStudent()
