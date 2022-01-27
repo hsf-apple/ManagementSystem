@@ -48,7 +48,7 @@ class ApprovalModel extends Model
         $user = $user::where('user_id',$getsession)->firstOrFail();
 
         //display list of student who sent a proposal for one lecture
-        $titlelist = ProposalModel::Select()->where('lectureId',$user->lectureId)->with('studentprofile')->get();
+        $titlelist = SVHuntingModel::Select()->where('lectureId',$user->lectureId)->with('studentprofile')->get();
 
         return $titlelist;
     }
@@ -63,7 +63,7 @@ class ApprovalModel extends Model
 
     public function showspecificproposaldata($data)
     {
-        $updatetitle = ProposalModel::where('proposalID',$data)->first();
+        $updatetitle = SVHuntingModel::where('proposalID',$data)->first();
 
         return $updatetitle;
     }
